@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoadingService } from '../../services/loading.service';
 import { iPosition } from '../../interfaces/position.interface';
 import { GmapService } from '../../services/gmap.service';
+import { DbService } from '../../services/db.service';
 
 declare var google: any;
 @IonicPage()
@@ -14,20 +15,23 @@ export class MapPage {
   data: any;
   mapEl: any;
   map: any;
-  USER_LOCATION: iPosition = {lat: 10, lng: 10};
+  USER_LOCATION: iPosition = { lat: 10, lng: 10 };
   MAP_ZOOM: number = 5;
   MAKERS_LOADED: boolean = false;
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private loadingService: LoadingService,
-    private gmapService: GmapService
-    ) {
+    private gmapService: GmapService,
+    private dbService: DbService
+  ) {
+    this.getLocations();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
     this.startInitMap();
+    this.getLocations();
   }
 
   startInitMap() {
@@ -74,6 +78,14 @@ export class MapPage {
           // this.loadShops();
         })
       })
+  }
+
+  getLocations() {
+    this.dbService.getLocations()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(err => console.log(err))
   }
 
 }
