@@ -30,8 +30,21 @@
       <ion-input type="text" placeholder="User_Phone" [(ngModel)]="LOC.User_Phone"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="LocationType_Ref" [(ngModel)]="LOC.LocationType_Ref"></ion-input>
+      <ion-label>Location Ref</ion-label>
+      <ion-select #item (ionChange)="selectLocation(item.value)">
+        <ion-option *ngFor="let loc of LOCATIONTYPES" [value]="loc">{{loc.Name}}</ion-option>
+      </ion-select>
     </ion-item>
+    <!-- <ion-item>
+      <ion-label>Location Ref</ion-label>
+      <select [(ngModel)]="LOC.LocationType_Ref" (change)="selectLocation()">
+        <option *ngFor="let loc of LOCATIONTYPES" [ngValue]="loc">{{loc.Name}}</option>
+      </select>
+    </ion-item> -->
+    <!-- <ion-item>
+      <ion-input type="text" placeholder="LocationType_Ref" [(ngModel)]="LOC.LocationType_Ref"></ion-input>
+    </ion-item> -->
+    <button ion-button (click)="updateLocation()">Get current location</button>
     <ion-item>
       <ion-input type="text" placeholder="Latitude" [(ngModel)]="LOC.Latitude"></ion-input>
     </ion-item>
@@ -45,6 +58,9 @@
     <ion-row>
       <ion-col>
         <button ion-button (click)="send2Admin()">GỬI ADMIN</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button (click)="save()">LƯU</button>
       </ion-col>
     </ion-row>
   </ion-grid>

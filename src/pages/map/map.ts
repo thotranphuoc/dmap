@@ -16,7 +16,8 @@ export class MapPage {
   data: any;
   mapEl: any;
   map: any;
-  USER_LOCATION: iPosition = { lat: 10.37211, lng: 106.453621 };
+  // USER_LOCATION: iPosition = { lat: 10.37211, lng: 106.453621 };
+  USER_LOCATION: iPosition = null;
   MAP_ZOOM: number = 10;
   MAKERS_LOADED: boolean = false;
   LOCATIONS = [];

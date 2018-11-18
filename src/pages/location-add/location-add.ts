@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { iLocation } from '../../interfaces/location.interface';
 import { LocalService } from '../../services/local.service';
 import { DbService } from '../../services/db.service';
@@ -33,6 +33,7 @@ export class LocationAddPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private modalCtrl: ModalController,
     private localService: LocalService,
     private dbService: DbService
   ) {
@@ -69,6 +70,26 @@ export class LocationAddPage {
 
   send2Admin(){
     console.log(this.LOC);
+    
+  }
+
+  updateLocation() {
+    let CURRENT_LOCATION = this.localService.USER_CURRENT_LOCATION;
+    let mapModal = this.modalCtrl.create('LocationSetPage', { CURRENT_LOCATION: CURRENT_LOCATION });
+    mapModal.onDidDismiss((data: any) => {
+      console.log(data);
+      // if (data) {
+      //   this.SHOP.SHOP_LOCATION = data.NEW_LOCATION;
+      // }
+      this.LOC.Latitude = data.NEW_LOCATION.lat;
+      this.LOC.Longitude = data.NEW_LOCATION.lng;
+    })
+    mapModal.present();
+  }
+
+  selectLocation(loc){
+    console.log(loc);
+    this.LOC.LocationType_Ref = loc.LocationType_Ref;
   }
 
 }
