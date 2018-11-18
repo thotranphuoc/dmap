@@ -22,4 +22,22 @@ export class DbService {
         //     console.log(res);
         // })
     }
+
+    getLocation(ID: string){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getLocation&LocationID='+ID;
+        console.log(url);
+        return this.httpClient.get(url).toPromise();
+    }
+
+    getAllQuestionTypes(){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getAllQuestionType'
+        return this.httpClient.get(url).toPromise();
+    }
+
+    getAllLocationTypes(){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getAllLocationType'
+        return this.httpClient.get(url).toPromise();
+    }
+
+    
 }

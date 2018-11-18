@@ -1,0 +1,19 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Chi tiết địa điểm</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<div *ngIf="LOCATION">
+  <div id="Title">{{LOCATION.Title}}</div>
+  <div id="Address">{{LOCATION.Address}}</div>
+  <div id="Phone">{{LOCATION.Phone}}</div>
+  <div id="FullName">{{LOCATION.FullName}}</div>
+  <div id="Level">{{LOCATION.Level}}</div>
+</div>
+</ion-content>
