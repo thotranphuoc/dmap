@@ -31,19 +31,28 @@ export class GmapService {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(position => {
                         console.log('Curent location', position);
-                        this.currentUserPosition = { lat: position.coords.latitude, lng: position.coords.longitude };
-                        this.localService.USER_CURRENT_LOCATION = this.currentUserPosition;
-                        resolve(this.currentUserPosition);
+                        let pos = { lat: position.coords.latitude, lng: position.coords.longitude };
+                        this.updateCurrentLocation(pos);
+                        resolve(pos);
                     }, err => {
-                        console.log({MSG: 'navigator.geolocation not available'})
-                        resolve({lat: 10.780482, lng: 106.70223})
+                        console.log({ MSG: 'navigator.geolocation not available' })
+                        let pos = { lat: 10.780482, lng: 106.70223 };
+                        this.updateCurrentLocation(pos);
+                        resolve(pos)
                     })
                 } else {
                     console.log('navigator not allowed')
-                    resolve({lat: 10.780482, lng: 106.70223})
+                    let pos = { lat: 10.780482, lng: 106.70223 };
+                    this.updateCurrentLocation(pos);
+                    resolve(pos)
                 }
             }
         })
+    }
+
+    updateCurrentLocation(position) {
+        this.currentUserPosition = position;
+        this.localService.USER_CURRENT_LOCATION = position;
     }
 
     initMap(mapElement, mapOptions) {
@@ -88,7 +97,7 @@ export class GmapService {
             marker.addListener('click', () => {
                 console.log(LOCATION);
                 // let popover = this.popoverCtrl.create('PopOverPage', LOCATION).present();
-                
+
                 this.popoverCtrl.create('PopOverPage', { LOCATION: LOCATION }).present()
                     .then((res) => { console.log(res); })
                     .catch((err) => {

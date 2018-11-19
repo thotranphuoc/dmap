@@ -68,16 +68,16 @@ export class LocationAddPage {
       })
   }
 
-  send2Admin(){
+  send2Admin() {
     console.log(this.LOC);
-    this.dbService.locationNewAdd(this.LOC.Address,this.LOC.Address,this.LOC.Address,this.LOC.Address,this.LOC.Address)
-    .then((res)=>{
-      console.log(res);
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-    
+    this.dbService.locationNewAdd(this.LOC.Address, this.LOC.Address, this.LOC.Address, this.LOC.Address, this.LOC.Address)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
   }
 
   updateLocation() {
@@ -88,13 +88,15 @@ export class LocationAddPage {
       // if (data) {
       //   this.SHOP.SHOP_LOCATION = data.NEW_LOCATION;
       // }
-      this.LOC.Latitude = data.NEW_LOCATION.lat;
-      this.LOC.Longitude = data.NEW_LOCATION.lng;
+      if (data.NEW_LOCATION) {
+        this.LOC.Latitude = data.NEW_LOCATION.lat;
+        this.LOC.Longitude = data.NEW_LOCATION.lng;
+      }
     })
     mapModal.present();
   }
 
-  selectLocation(loc){
+  selectLocation(loc) {
     console.log(loc);
     this.LOC.LocationType_Ref = loc.LocationType_Ref;
   }
