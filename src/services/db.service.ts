@@ -39,13 +39,18 @@ export class DbService {
         return this.httpClient.get(url).toPromise();
     }
 
-    userNewRegister(fullname, matkhau, diachi, email, sodt){
-        let url = "http://www.drdvietnam.org/bandotiepcan/service?action=insert&fullname=" + fullname + "&password=" + matkhau +"&address="+diachi+"&email="+email+"&telephone="+sodt;
+    locationNewAdd(Latitude,Longitude,Address,Phone,User_Phone,LocationType_Ref){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude='+Latitude+'&Longitude='+Longitude+'&Address='+Address+'&Phone='+Phone+'&User_Phone='+User_Phone+'&LocationType_Ref='+LocationType_Ref;
         return this.httpClient.get(url).toPromise();
     }
 
-    locationNewAdd(Latitude,Longitude,Address,Phone,User_Phone,LocationType_Ref){
-        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude='+Latitude+'&Longitude='+Longitude+'&Address='+Address+'&Phone='+Phone+'&User_Phone='+User_Phone+'&LocationType_Ref='+LocationType_Ref;
+    userLogin(user: string, pw: string){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=login&email='+user+'&password='+pw;
+        return this.httpClient.get(url).toPromise();
+    }
+
+    userNewRegister(fullname, matkhau, diachi, email, sodt){
+        let url = "http://www.drdvietnam.org/bandotiepcan/service?action=insert&fullname=" + fullname + "&password=" + matkhau +"&address="+diachi+"&email="+email+"&telephone="+sodt;
         return this.httpClient.get(url).toPromise();
     }
 
