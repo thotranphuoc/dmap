@@ -70,7 +70,7 @@ export class LocationAddPage {
 
   send2Admin() {
     console.log(this.LOC);
-    this.dbService.locationNewAdd(this.LOC.Address, this.LOC.Address, this.LOC.Address, this.LOC.Address, this.LOC.Address)
+    this.dbService.locationNewAdd(this.LOC.Latitude,this.LOC.Longitude,this.LOC.Address,this.LOC.Phone, this.LOC.User_Phone, this.LOC.LocationType_Ref)
       .then((res) => {
         console.log(res);
       })
