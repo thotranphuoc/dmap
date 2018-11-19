@@ -35,7 +35,8 @@ export class LocationAddPage {
     public navParams: NavParams,
     private modalCtrl: ModalController,
     private localService: LocalService,
-    private dbService: DbService
+    private dbService: DbService,
+    
   ) {
     this.LOCATION = this.localService.LOCATION_DEFAULT
   }
@@ -73,6 +74,7 @@ export class LocationAddPage {
     this.dbService.locationNewAdd(this.LOC.Latitude,this.LOC.Longitude,this.LOC.Address,this.LOC.Phone, this.LOC.User_Phone, this.LOC.LocationType_Ref)
       .then((res) => {
         console.log(res);
+
       })
       .catch(err => {
         console.log(err);
