@@ -28,7 +28,7 @@ export class LocationAddPage {
     Address: '',
     Phone: '',
     User_Phone: '',
-    LocationType_Ref: ''
+    LocationType_Ref: 0
   }
   constructor(
     public navCtrl: NavController,
@@ -98,7 +98,7 @@ export class LocationAddPage {
 
   selectLocation(loc) {
     console.log(loc);
-    this.LOC.LocationType_Ref = loc.LocationType_Ref;
+    this.LOC.LocationType_Ref = loc.LocationTypeID;
   }
 
 }
@@ -111,5 +111,5 @@ export interface iLOC {
   Address: string,
   Phone: string,
   User_Phone: string,
-  LocationType_Ref: string, // Location ID
+  LocationType_Ref: number, // Location ID
 }
