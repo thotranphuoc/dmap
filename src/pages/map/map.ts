@@ -49,10 +49,14 @@ export class MapPage {
     if (this.USER_LOCATION) {
       this.showMap(this.USER_LOCATION, mapElement);
     } else {
-      this.gmapService.getCurrentLocation().then((position: iPosition) => {
+      this.gmapService.getCurrentLocation()
+      .then((position: iPosition) => {
         console.log(position);
         this.USER_LOCATION = position;
         this.showMap(this.USER_LOCATION, mapElement);
+      })
+      .catch((err)=>{
+        console.log(err);
       })
     }
   }

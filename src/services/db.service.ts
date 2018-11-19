@@ -39,5 +39,10 @@ export class DbService {
         return this.httpClient.get(url).toPromise();
     }
 
+    locationNewAdd(fullname, matkhau, diachi, email, sodt){
+        let url = "http://www.drdvietnam.org/bandotiepcan/service?action=insert&fullname=" + fullname + "&password=" + matkhau +"&address="+diachi+"&email="+email+"&telephone="+sodt;
+        return this.httpClient.get(url).toPromise();
+    }
+
     
 }

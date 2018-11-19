@@ -35,10 +35,12 @@ export class GmapService {
                         this.localService.USER_CURRENT_LOCATION = this.currentUserPosition;
                         resolve(this.currentUserPosition);
                     }, err => {
-                        reject({MSG: 'navigator.geolocation not available'})
+                        console.log({MSG: 'navigator.geolocation not available'})
+                        resolve({lat: 10.780482, lng: 106.70223})
                     })
                 } else {
-                    reject({MSG: 'navigator.geolocation not available'})
+                    console.log('navigator not allowed')
+                    resolve({lat: 10.780482, lng: 106.70223})
                 }
             }
         })

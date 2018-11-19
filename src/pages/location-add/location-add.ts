@@ -70,6 +70,13 @@ export class LocationAddPage {
 
   send2Admin(){
     console.log(this.LOC);
+    this.dbService.locationNewAdd(this.LOC.Address,this.LOC.Address,this.LOC.Address,this.LOC.Address,this.LOC.Address)
+    .then((res)=>{
+      console.log(res);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
     
   }
 
