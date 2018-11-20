@@ -9,6 +9,7 @@ import { LoadingService } from '../services/loading.service';
 import { GmapService } from '../services/gmap.service';
 import { LocalService } from '../services/local.service';
 import { DbService } from '../services/db.service';
+
 // import { HomePage } from '../pages/home/home';
 
 @NgModule({
