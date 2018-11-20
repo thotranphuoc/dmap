@@ -1,7 +1,33 @@
 page-location-question {
 
 }
-
+.main{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.content
+{
+    padding: 0px !important;
+}
+.help_question
+{
+    padding:10px;
+    float: right;
+}
+.content_question
+{
+    padding: 20px 10px 10px 10px;
+}
+.image_desc
+{
+    width: 90%;
+    margin: 0 auto;
+}
+.header_question
+{
+    background: #f68b21;
+    color: #FFFFFF;
+}
 .btn_question button
 {
     background: #f68b21;
@@ -12,7 +38,7 @@ page-location-question {
     padding: 20px;
     margin: 5px 0;
     //padding: 10px 0;
-    color: #000000;
+    color: #FFFFFF;
     font-weight: bold;
     font-size: 10px;
     text-transform: uppercase;
