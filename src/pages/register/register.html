@@ -7,33 +7,23 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>register</ion-title>
+    <ion-title>Đăng ký</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
+<ion-content>
+    <div class="main" text-center >
 
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="fullname" placeholder="Full Name"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-input type="password" [(ngModel)]="matkhau" placeholder="Password"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="diachi" placeholder="Địa chỉ"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="email" placeholder="Email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" [(ngModel)]="sodt" placeholder="Số điện thoại"></ion-input>
-    </ion-item>
-
-  </ion-list>
-  <button ion-button block (click)="register()">Register</button>
+        <div class="inputs">
+            <input type="text" [(ngModel)]="fullname" placeholder="Họ và tên"/>
+            <input type="password" [(ngModel)]="matkhau" placeholder="Mật khẩu"/>
+            <input type="text" [(ngModel)]="diachi" placeholder="Địa chỉ"/>
+            <input type="text" [(ngModel)]="email" placeholder="Email"/>
+            <input type="text" [(ngModel)]="sodt" placeholder="Số điện thoại"/>
+        </div>
+          <button ion-button block (click)="register()" class="btn">Đăng ký</button>
+    </div>
+  
 </ion-content>
