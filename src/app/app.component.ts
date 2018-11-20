@@ -8,7 +8,7 @@ import { HomePage } from '../pages/home/home';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: string = 'MapPage';
+  rootPage: string = 'LoginPage';
   pages: Array<{ title: string, component: string, icon: string }>  = [
     { title: 'Map', component: 'MapPage', icon: 'map' },
   ];

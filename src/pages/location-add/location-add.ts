@@ -98,7 +98,7 @@ export class LocationAddPage {
       this.dbService.locationNewAdd(this.LOC.Latitude,this.LOC.Longitude,this.LOC.Address,this.LOC.Phone, this.LOC.User_Phone, this.LOC.LocationType_Ref,this.TYPES,this.localService.STRING )
       .then((res) => {
         console.log(res);
-
+        this.navCtrl.setRoot('MapPage');
       })
       .catch(err => {
         console.log(err);
