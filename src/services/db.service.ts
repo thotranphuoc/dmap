@@ -34,13 +34,20 @@ export class DbService {
         return this.httpClient.get(url).toPromise();
     }
 
+    getAllQuestionsOfType(ID: string){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getQuestionList&question_type='+ID;
+        return this.httpClient.get(url).toPromise();
+    }
+
     getAllLocationTypes(){
         let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getAllLocationType'
         return this.httpClient.get(url).toPromise();
     }
 
-    locationNewAdd(Latitude,Longitude,Address,Phone,User_Phone,LocationType_Ref){
-        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude='+Latitude+'&Longitude='+Longitude+'&Address='+Address+'&Phone='+Phone+'&User_Phone='+User_Phone+'&LocationType_Ref='+LocationType_Ref;
+    locationNewAdd(Latitude,Longitude,Address,Phone,User_Phone,LocationType_Ref,Qtype,QA){
+       // http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude=10&Longitude=100&Address=Address&Phone=Phone&User_Phone=User_Phone&LocationType_Ref=1&QuestionType=1;2;3&QuestionAnswer=1-co;2-khong;3-co
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude='+Latitude+'&Longitude='+Longitude+'&Address='+Address+'&Phone='+Phone+'&User_Phone='+User_Phone+'&LocationType_Ref='+LocationType_Ref+'&QuestionType='+Qtype+'&QuestionAnswer='+QA;
+        console.log(url);
         return this.httpClient.get(url).toPromise();
     }
 

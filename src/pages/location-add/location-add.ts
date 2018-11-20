@@ -18,8 +18,10 @@ import { DbService } from '../../services/db.service';
 })
 export class LocationAddPage {
   LOCATION: iLocation;
-  QUESTIONTYPE: any[] = [];
+  QUESTIONTYPES: any[] = [];
+  QUESTIONS: any[] = [];
   LOCATIONTYPES: any[] = [];
+  TYPES = '';
   LOC: iLOC = {
     TempID: '',
     Latitude: '',
@@ -51,11 +53,29 @@ export class LocationAddPage {
     this.dbService.getAllQuestionTypes()
       .then((res: any[]) => {
         console.log(res);
-        this.QUESTIONTYPE = res;
+        this.QUESTIONTYPES = res;
       })
       .catch(err => {
         console.log(err);
       })
+  }
+
+  selectQuestionType(qt){
+    console.log(qt);
+    this.getQuestionsOfType(qt.id);
+  }
+
+  getQuestionsOfType(ID){
+    this.dbService.getAllQuestionsOfType(ID)
+    .then((res: any[]) => {
+      console.log(res);
+      this.QUESTIONS = res;
+      this.TYPES +=ID + ';'
+      this.navCtrl.push('LocationQuestionPage',{QUESTIONS: res});
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   getLocationTypes() {
@@ -69,9 +89,13 @@ export class LocationAddPage {
       })
   }
 
+  
+
   send2Admin() {
     console.log(this.LOC);
-    this.dbService.locationNewAdd(this.LOC.Latitude,this.LOC.Longitude,this.LOC.Address,this.LOC.Phone, this.LOC.User_Phone, this.LOC.LocationType_Ref)
+    console.log(this.TYPES, this.localService.STRING);
+    if(this.localService.USER){
+      this.dbService.locationNewAdd(this.LOC.Latitude,this.LOC.Longitude,this.LOC.Address,this.LOC.Phone, this.LOC.User_Phone, this.LOC.LocationType_Ref,this.TYPES,this.localService.STRING )
       .then((res) => {
         console.log(res);
 
@@ -79,6 +103,9 @@ export class LocationAddPage {
       .catch(err => {
         console.log(err);
       })
+    }else{
+      this.go2Login();
+    }
 
   }
 
@@ -101,6 +128,10 @@ export class LocationAddPage {
   selectLocation(loc) {
     console.log(loc);
     this.LOC.LocationType_Ref = loc.LocationTypeID;
+  }
+
+  go2Login(){
+    this.navCtrl.push('LoginPage',{isBack: true});
   }
 
 }

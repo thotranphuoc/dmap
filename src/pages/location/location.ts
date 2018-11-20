@@ -45,4 +45,6 @@ export class LocationPage {
       console.log(err);
     })
   }
+
+  
 }

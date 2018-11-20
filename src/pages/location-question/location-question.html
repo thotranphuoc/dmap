@@ -36,21 +36,21 @@
         </div>
 
         <div class="image_desc">
-          <img src="../../assets/imgs/undp_logo.png">
+        <img [src]="SHOWN_QUESTION.imgdata">
         </div>
 
         <div class="content_question">
-            Lối vào có bậc hay không?
+            {{SHOWN_QUESTION.question_details}}
         </div>
 
         <div class="btn_question">
             <ion-grid>
                 <ion-row>
                   <ion-col>
-                      <button>Có</button>
+                      <button (click)="nextQuest('Yes',SHOWN_QUESTION.next_yes)">{{SHOWN_QUESTION.answer_yes}}</button>
                   </ion-col>
                   <ion-col>
-                      <button>Không</button>
+                      <button (click)="nextQuest('No',SHOWN_QUESTION.next_no)">{{SHOWN_QUESTION.answer_no}}</button>
                   </ion-col>
                   <ion-col>
                       <button>Bỏ qua câu hỏi tiếp theo</button>

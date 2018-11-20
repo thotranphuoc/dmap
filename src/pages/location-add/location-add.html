@@ -30,9 +30,15 @@
       <ion-input type="text" placeholder="User_Phone" [(ngModel)]="LOC.User_Phone"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Location Ref</ion-label>
+      <ion-label>Loai dia diem:</ion-label>
       <ion-select #item (ionChange)="selectLocation(item.value)">
         <ion-option *ngFor="let loc of LOCATIONTYPES" [value]="loc">{{loc.Name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Loai cau hoi ks:</ion-label>
+      <ion-select #questiontype (ionChange)="selectQuestionType(questiontype.value)">
+        <ion-option *ngFor="let QUES of QUESTIONTYPES" [value]="QUES">{{QUES.description}}</ion-option>
       </ion-select>
     </ion-item>
     <!-- <ion-item>

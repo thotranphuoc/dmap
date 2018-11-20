@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DbService } from '../../services/db.service';
+import { LocalService } from '../../services/local.service';
 
 /**
  * Generated class for the LoginPage page.
@@ -15,12 +16,19 @@ import { DbService } from '../../services/db.service';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  data: any;
+  isBack: boolean  = false;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private dbService: DbService
+    private dbService: DbService,
+    private localService: LocalService
     ) {
+      this.data = this.navParams.data;
+      if(typeof(this.data) !=='undefined' && this.data.isBack){
+        this.isBack = true;
+      }
+    
   }
 
   ionViewDidLoad() {
@@ -33,6 +41,12 @@ export class LoginPage {
     this.dbService.userLogin(user, pass)
     .then((res)=>{
       console.log(res);
+      this.localService.USER = res;
+      if (this.isBack){
+        this.navCtrl.pop()
+      }else{
+        this.navCtrl.setRoot('MapPage')
+      }
     })
     .catch(err=>{ 
       console.log(err);

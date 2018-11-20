@@ -15,7 +15,8 @@ export class LocalService {
     constructor(
         private loadingCtrl: LoadingController
     ) { }
-
+    USER = null;
+    STRING = '';
     USER_CURRENT_LOCATION: iPosition = null;
 
     LOCATION: iLocation = {
