@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>location-add</ion-title>
+    <ion-title>Thêm địa điểm</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,17 +17,17 @@
   <ion-list>
 
     <ion-item>
-      <ion-input type="text" placeholder="Title" [(ngModel)]="LOC.Title"></ion-input>
+      <ion-input type="text" placeholder="Tên công trình" [(ngModel)]="LOC.Title"></ion-input>
     </ion-item>
   
     <ion-item>
-      <ion-input type="text" placeholder="Address" [(ngModel)]="LOC.Address"></ion-input>
+      <ion-input type="text" placeholder="Địa chỉ" [(ngModel)]="LOC.Address"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Phone" [(ngModel)]="LOC.Phone"></ion-input>
+      <ion-input type="text" placeholder="Số điện thoại" [(ngModel)]="LOC.Phone"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="User_Phone" [(ngModel)]="LOC.User_Phone"></ion-input>
+      <ion-input type="text" placeholder="Số điện thoại của bạn" [(ngModel)]="LOC.User_Phone"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Loai dia diem:</ion-label>
@@ -50,7 +50,7 @@
     <!-- <ion-item>
       <ion-input type="text" placeholder="LocationType_Ref" [(ngModel)]="LOC.LocationType_Ref"></ion-input>
     </ion-item> -->
-    <button ion-button (click)="updateLocation()">Get current location</button>
+    <button ion-button (click)="updateLocation()">Chọn toạ độ công trình</button>
     <ion-item>
       <ion-input type="text" placeholder="Latitude" [(ngModel)]="LOC.Latitude"></ion-input>
     </ion-item>
@@ -61,7 +61,7 @@
 
   </ion-list>
   <ion-grid>
-    <ion-row>
+    <ion-row class="btn_add">
       <ion-col>
         <button ion-button (click)="send2Admin()">GỬI ADMIN</button>
       </ion-col>
