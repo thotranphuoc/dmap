@@ -39,15 +39,20 @@ export class LoginPage {
     // let user = 'luan@gmail.com';
     // let pass = '12345678';
     this.dbService.userLogin(user, pass)
-    .then((res)=>{
+    .then((res: any)=>{
       console.log(res);
-
-      this.localService.USER = res;
-      if (this.isBack){
-        this.navCtrl.pop()
+      if(res.result=='1'){
+        this.localService.USER = res;
+        if (this.isBack){
+          this.navCtrl.pop()
+        }else{
+          this.navCtrl.setRoot('MapPage')
+        }
       }else{
-        this.navCtrl.setRoot('MapPage')
+        alert('User or password is wrong');
       }
+      
+      
     })
     .catch(err=>{ 
       console.log(err);
