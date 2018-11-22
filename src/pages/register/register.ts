@@ -36,8 +36,11 @@ export class RegisterPage {
     .catch(err=>{
       console.log(err);
     })
-    .then((res)=>{
+    .then((res: any)=>{
       console.log(res);
+      if(res.result=='1'){
+          this.navCtrl.setRoot('LoginPage')
+        }
     })
   }
 
