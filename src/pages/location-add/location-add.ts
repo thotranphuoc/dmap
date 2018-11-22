@@ -66,6 +66,10 @@ export class LocationAddPage {
   }
 
   getQuestionsOfType(ID){
+    console.log(ID);
+    let index = this.QUESTIONTYPES.map(q=> q.id).indexOf(ID);
+    console.log(index);
+    this.QUESTIONTYPES.splice(index,1);
     this.dbService.getAllQuestionsOfType(ID)
     .then((res: any[]) => {
       console.log(res);
@@ -95,7 +99,7 @@ export class LocationAddPage {
     console.log(this.LOC);
     console.log(this.TYPES, this.localService.STRING);
     if(this.localService.USER){
-      this.dbService.locationNewAdd(this.LOC.Latitude,this.LOC.Longitude,this.LOC.Address,this.LOC.Phone, this.LOC.User_Phone, this.LOC.LocationType_Ref,this.TYPES,this.localService.STRING )
+      this.dbService.locationNewAdd(this.LOC.Latitude,this.LOC.Longitude,this.LOC.Title,this.LOC.Address,this.LOC.Phone, this.LOC.User_Phone, this.LOC.LocationType_Ref,this.TYPES,this.localService.STRING )
       .then((res) => {
         console.log(res);
         this.navCtrl.setRoot('MapPage');
