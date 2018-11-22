@@ -41,6 +41,7 @@ export class LoginPage {
     this.dbService.userLogin(user, pass)
     .then((res)=>{
       console.log(res);
+
       this.localService.USER = res;
       if (this.isBack){
         this.navCtrl.pop()
@@ -53,6 +54,9 @@ export class LoginPage {
     })
   }
 
+  donotLogin(){
+    this.navCtrl.push('MapPage');
+  }
   go2Register(){
     this.navCtrl.push('RegisterPage');
   }
