@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { LoadingService } from '../../services/loading.service';
 import { iPosition } from '../../interfaces/position.interface';
 import { GmapService } from '../../services/gmap.service';
@@ -24,6 +24,7 @@ export class MapPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private actionSheetCtrl: ActionSheetController,
     private loadingService: LoadingService,
     private gmapService: GmapService,
     private dbService: DbService
@@ -50,14 +51,14 @@ export class MapPage {
       this.showMap(this.USER_LOCATION, mapElement);
     } else {
       this.gmapService.getCurrentLocation()
-      .then((position: iPosition) => {
-        console.log(position);
-        this.USER_LOCATION = position;
-        this.showMap(this.USER_LOCATION, mapElement);
-      })
-      .catch((err)=>{
-        console.log(err);
-      })
+        .then((position: iPosition) => {
+          console.log(position);
+          this.USER_LOCATION = position;
+          this.showMap(this.USER_LOCATION, mapElement);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
     }
   }
 
@@ -82,10 +83,10 @@ export class MapPage {
         google.maps.event.addListener(this.map, 'idle', () => {
           console.log('map was loaded fully');
           this.loadingService.hideLoading();
-          if(this.LOCATIONS.length>0){
+          if (this.LOCATIONS.length > 0) {
             this.loadLocation2Map(this.LOCATIONS);
-          }else{
-            this.getLocations().then(()=>{
+          } else {
+            this.getLocations().then(() => {
               this.loadLocation2Map(this.LOCATIONS);
             })
           }
@@ -94,17 +95,17 @@ export class MapPage {
   }
 
   getLocations() {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
       this.dbService.getLocations()
-      .then((res: any) => {
-        console.log(res);
-        this.LOCATIONS = res;
-        resolve();
-      })
-      .catch(err => {
-        console.log(err);
-        reject(err);
-      })
+        .then((res: any) => {
+          console.log(res);
+          this.LOCATIONS = res;
+          resolve();
+        })
+        .catch(err => {
+          console.log(err);
+          reject(err);
+        })
     })
   }
 
@@ -119,10 +120,10 @@ export class MapPage {
         //   LOCATION['SHOP_IMAGES'] = [img0,img1];
         // });
         LOCATIONS.forEach(LOCATION => {
-          let POS: iPosition =  {lat: Number(LOCATION.Latitude), lng: Number(LOCATION.Longitude)};
+          let POS: iPosition = { lat: Number(LOCATION.Latitude), lng: Number(LOCATION.Longitude) };
           this.gmapService.addMarkerWithImageToMapWithIDReturnPromiseWithMarker(this.map, POS, LOCATION);
         })
-      }else{
+      } else {
         console.log('markers loaded');
       }
 
@@ -131,12 +132,69 @@ export class MapPage {
     }
   }
 
-  go2AddLoc(){
+  go2AddLoc() {
     this.navCtrl.push('LocationAddPage');
   }
 
-  showInfo(){
+  showInfo() {
     console.log('show info')
+    this.presentActionSheet();
   }
 
+  presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Select: ',
+      buttons: [
+        {
+          text: 'Loại địa điểm',
+          // role: 'destructive',
+          handler: () => {
+            console.log('Loại địa điểm clicked');
+          }
+        },
+        {
+          text: 'Câp nhật dữ liệu',
+          handler: () => {
+            console.log('Câp nhật dữ liệu');
+          }
+        },
+        {
+          text: 'Thông tin',
+          handler: () => {
+            console.log('Thông tin');
+          }
+        },
+        {
+          text: 'Thông tin cá nhân',
+          handler: () => {
+            console.log('Thông tin cá nhân');
+          }
+        },
+        {
+          text: 'Quà tặng và giải thưởng',
+          handler: () => {
+            console.log('Quà tặng và giải thưởng');
+          }
+        },
+        {
+          text: 'Giúp đỡ',
+          handler: () => {
+            console.log('Giúp đỡ');
+          }
+        },
+        {
+          text: 'Thoát',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+
+    actionSheet.present();
+  }
 }
+
+
+
