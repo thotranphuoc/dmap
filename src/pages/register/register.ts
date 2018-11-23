@@ -39,7 +39,11 @@ export class RegisterPage {
     .then((res: any)=>{
       console.log(res);
       if(res.result=='1'){
+        alert('Chúc mừng bạn đã đăng ký thành công tài khoản DMAP');
           this.navCtrl.setRoot('LoginPage')
+        }
+        else{
+          alert('Tài khoản đã được đăng ký, xin vui lòng chọn tài khoản khác');
         }
     })
   }
