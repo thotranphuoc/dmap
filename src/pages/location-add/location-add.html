@@ -14,60 +14,46 @@
 
 
 <ion-content>
-  <ion-list>
 
-    <ion-item>
-      <ion-input type="text" placeholder="Tên công trình" [(ngModel)]="LOC.Title"></ion-input>
-    </ion-item>
+  <div class="main">
+      <ion-list>
+          <div class="inputs">
+              <input type="text" placeholder="Tên công trình" [(ngModel)]="LOC.Title"/>
+              <input type="text" placeholder="Địa chỉ" [(ngModel)]="LOC.Address"/>
+              <input type="text" placeholder="Số điện thoại" [(ngModel)]="LOC.Phone"/>
+              <ion-input type="text" placeholder="Số điện thoại của bạn" [(ngModel)]="LOC.User_Phone"></ion-input>
+            
+          <ion-item>
+            <ion-label>Loại địa điểm:</ion-label>
+            <ion-select #item (ionChange)="selectLocation(item.value)">
+              <ion-option *ngFor="let loc of LOCATIONTYPES" [value]="loc">{{loc.Name}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Loại câu hỏi khảo sát:</ion-label>
+            <ion-select #questiontype (ionChange)="selectQuestionType(questiontype.value)">
+              <ion-option *ngFor="let QUES of QUESTIONTYPES" [value]="QUES">{{QUES.description}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <!-- <ion-item>
+            <ion-label>Location Ref</ion-label>
+            <select [(ngModel)]="LOC.LocationType_Ref" (change)="selectLocation()">
+              <option *ngFor="let loc of LOCATIONTYPES" [ngValue]="loc">{{loc.Name}}</option>
+            </select>
+          </ion-item> -->
+          <!-- <ion-item>
+            <ion-input type="text" placeholder="LocationType_Ref" [(ngModel)]="LOC.LocationType_Ref"></ion-input>
+          </ion-item> -->
+          <button (click)="updateLocation()">Chọn toạ độ công trình</button>
+            <input type="text" placeholder="Latitude" [(ngModel)]="LOC.Latitude"/>
+            <input type="text" placeholder="Longitude" [(ngModel)]="LOC.Longitude"/>
+          
+        </div>
+        </ion-list>
+          <div class="btn_add">
+              <button (click)="send2Admin()">GỬI ADMIN</button>
+              <button (click)="save()">LƯU</button>
+          </div>
+  </div>
   
-    <ion-item>
-      <ion-input type="text" placeholder="Địa chỉ" [(ngModel)]="LOC.Address"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" placeholder="Số điện thoại" [(ngModel)]="LOC.Phone"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" placeholder="Số điện thoại của bạn" [(ngModel)]="LOC.User_Phone"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Loai dia diem:</ion-label>
-      <ion-select #item (ionChange)="selectLocation(item.value)">
-        <ion-option *ngFor="let loc of LOCATIONTYPES" [value]="loc">{{loc.Name}}</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>Loai cau hoi ks:</ion-label>
-      <ion-select #questiontype (ionChange)="selectQuestionType(questiontype.value)">
-        <ion-option *ngFor="let QUES of QUESTIONTYPES" [value]="QUES">{{QUES.description}}</ion-option>
-      </ion-select>
-    </ion-item>
-    <!-- <ion-item>
-      <ion-label>Location Ref</ion-label>
-      <select [(ngModel)]="LOC.LocationType_Ref" (change)="selectLocation()">
-        <option *ngFor="let loc of LOCATIONTYPES" [ngValue]="loc">{{loc.Name}}</option>
-      </select>
-    </ion-item> -->
-    <!-- <ion-item>
-      <ion-input type="text" placeholder="LocationType_Ref" [(ngModel)]="LOC.LocationType_Ref"></ion-input>
-    </ion-item> -->
-    <button ion-button (click)="updateLocation()">Chọn toạ độ công trình</button>
-    <ion-item>
-      <ion-input type="text" placeholder="Latitude" [(ngModel)]="LOC.Latitude"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input type="text" placeholder="Longitude" [(ngModel)]="LOC.Longitude"></ion-input>
-    </ion-item>
-    
-
-  </ion-list>
-  <ion-grid>
-    <ion-row class="btn_add">
-      <ion-col>
-        <button ion-button (click)="send2Admin()">GỬI ADMIN</button>
-      </ion-col>
-      <ion-col>
-        <button ion-button (click)="save()">LƯU</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 </ion-content>
