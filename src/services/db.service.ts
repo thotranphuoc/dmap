@@ -61,5 +61,10 @@ export class DbService {
         return this.httpClient.get(url).toPromise();
     }
 
+    passwordChange(email: string, oldPassword: string, newPassword: string){
+        let url = "http://www.drdvietnam.org/bandotiepcan/service?action=changepass&email="+email+"&passwordold="+oldPassword+"&password="+newPassword;
+        return this.httpClient.get(url).toPromise();
+    }
+
     
 }
