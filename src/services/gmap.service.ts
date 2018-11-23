@@ -4,6 +4,7 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { LocalService } from './local.service';
 import { iPosition } from '../interfaces/position.interface';
 import { iLocation } from '../interfaces/location.interface';
+import { AppService } from './app.service';
 
 declare var google: any;
 @Injectable()
@@ -18,7 +19,8 @@ export class GmapService {
     constructor(
         private popoverCtrl: PopoverController,
         private loadingCtrl: LoadingController,
-        private localService: LocalService
+        private localService: LocalService,
+        private appService: AppService
     ) { }
 
     getCurrentLocation() {
@@ -38,12 +40,14 @@ export class GmapService {
                         console.log({ MSG: 'navigator.geolocation not available' })
                         let pos = { lat: 10.780482, lng: 106.70223 };
                         this.updateCurrentLocation(pos);
+                        this.appService.showToastWithCloseButton('Please enable location');
                         resolve(pos)
                     })
                 } else {
                     console.log('navigator not allowed')
                     let pos = { lat: 10.780482, lng: 106.70223 };
                     this.updateCurrentLocation(pos);
+                    this.appService.showToastWithCloseButton('Please enable location')
                     resolve(pos)
                 }
             }

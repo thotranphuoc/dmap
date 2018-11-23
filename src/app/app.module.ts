@@ -9,6 +9,7 @@ import { LoadingService } from '../services/loading.service';
 import { GmapService } from '../services/gmap.service';
 import { LocalService } from '../services/local.service';
 import { DbService } from '../services/db.service';
+import { AppService } from '../services/app.service';
 
 // import { HomePage } from '../pages/home/home';
 
@@ -34,7 +35,8 @@ import { DbService } from '../services/db.service';
     LoadingService,
     GmapService,
     LocalService,
-    DbService
+    DbService,
+    AppService
   ]
 })
 export class AppModule {}
