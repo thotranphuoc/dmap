@@ -33,6 +33,21 @@ page-location-add {
     color: #000000;
     
 }
+
+.item-select {
+    background: #ffffff;
+    border: solid 1px #f68b21 !important;
+    border-radius: 10px;
+    background-size: 100% 100%;
+    width: 80%;
+    height: 26px;
+    border: none;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 15px;
+    color: #000000;
+    margin-top: 10px;
+}
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #999999;
     opacity: 1; /* Firefox */
@@ -41,7 +56,7 @@ page-location-add {
     padding-top: 5vh;
 }
 
-button{
+.btn_loc{
     background: #f68b21;
     //background: transparent;
     //background-image: url('../../assets/imgs/bg_login.png');
@@ -51,6 +66,7 @@ button{
 
     border-radius: 25px;
     margin: 5px 0;
+    margin-top: 10px;
     padding: 10px 0;
     color: #000000;
     font-weight: bold;

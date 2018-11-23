@@ -44,15 +44,15 @@
           <!-- <ion-item>
             <ion-input type="text" placeholder="LocationType_Ref" [(ngModel)]="LOC.LocationType_Ref"></ion-input>
           </ion-item> -->
-          <button (click)="updateLocation()">Chọn toạ độ công trình</button>
+          <button (click)="updateLocation()" class="btn_loc">Chọn toạ độ công trình</button>
             <input type="text" placeholder="Latitude" [(ngModel)]="LOC.Latitude"/>
             <input type="text" placeholder="Longitude" [(ngModel)]="LOC.Longitude"/>
           
         </div>
         </ion-list>
           <div class="btn_add">
-              <button (click)="send2Admin()">GỬI ADMIN</button>
-              <button (click)="save()">LƯU</button>
+              <button (click)="send2Admin()" class="btn_loc">GỬI ADMIN</button>
+              <button (click)="save()" class="btn_loc">LƯU</button>
           </div>
   </div>
   
