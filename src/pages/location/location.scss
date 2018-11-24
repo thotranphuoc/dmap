@@ -1,6 +1,28 @@
 page-location {
 
 }
+.star{
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+.cls_name{
+    width: 50%;
+    display: inline;
+}
+
+.cls_yes{
+    width: 40px;
+    height: 25px;
+    background: blue;
+    display: inline-block;
+}
+.cls_no{
+    display: inline-block;
+    width: 40px;
+    height: 25px;
+    background: red;
+}
 .main_loc{
     text-align: left;
 }
