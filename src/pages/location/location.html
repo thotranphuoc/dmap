@@ -14,12 +14,15 @@
         <div *ngIf="LOCATION">
             <div id="Title" class="loc">{{LOCATION.Title}}</div>
             <div class="star"><img src="../../assets/imgs/5.png" alt=""></div>
-
-            <div id="Address" class="loc">Địa chỉ: {{LOCATION.Address}}</div>
+            <div class="cls_address">
+              <div id="Address" class="loc">Địa chỉ: {{LOCATION.Address}}</div>
+              <div class ="cls_help"><button >Chỉ đường</button></div>
+            </div>
+            
             <div id="Phone" class="loc">Điện thoại: {{LOCATION.Phone}}</div>
             
             <div class="imformation">
-              <div>Thông tin địa điểm</div>
+              <div><strong>Thông tin địa điểm</strong></div>
               <div class="cls_type_loc"> 
                 <div class="cls_name">1. Lối vào </div>
                 <div class ="cls_yes"></div></div>
