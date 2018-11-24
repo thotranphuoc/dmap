@@ -3,6 +3,8 @@ import { LoadingController, Loading } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { iPosition } from '../interfaces/position.interface';
 import { iLocation } from '../interfaces/location.interface';
+import { iUser } from '../interfaces/user.interface';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
 
 
 @Injectable()
@@ -11,11 +13,34 @@ import { iLocation } from '../interfaces/location.interface';
 export class LocalService {
     loading: any;
     count: number = 0;
+
     isLoading: boolean = false;
     constructor(
-        private loadingCtrl: LoadingController
+        private loadingCtrl: LoadingController,
+        // private navCtrl: NavController
     ) { }
-    USER = null;
+
+    // isBack = false;
+    // doGoBack(){
+    //     if(this.isBack){
+    //         this.navCtrl.pop();
+    //     }else{
+    //         this.navCtrl.setRoot('MapPage');
+    //     }
+    // }
+    USER: iUser = null;
+    USER_DEFAULT: iUser = {
+        Address: '',
+        Email: '',
+        FullName: '',
+        GiftSort: '',
+        Image: '',
+        Level: '',
+        NumberLocation: '',
+        Password: '',
+        Phone: '',
+        Score: '',
+    }
     STRING = '';
     USER_CURRENT_LOCATION: iPosition = null;
 

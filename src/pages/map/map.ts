@@ -198,6 +198,7 @@ export class MapPage {
           text: 'Câp nhật dữ liệu',
           handler: () => {
             console.log('Câp nhật dữ liệu');
+            
           }
         },
         {
@@ -211,6 +212,7 @@ export class MapPage {
           text: 'Thông tin cá nhân',
           handler: () => {
             console.log('Thông tin cá nhân');
+            this.navCtrl.push('ProfileUpdatePage');
           }
         },
         {

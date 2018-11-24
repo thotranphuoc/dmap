@@ -1,0 +1,29 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>profile-update</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="main" text-center >
+    <div class="inputs" *ngIf="USER">
+        <input type="text" [(ngModel)]="USER.FullName" placeholder="Họ và tên"/>
+        <input type="text" [(ngModel)]="USER.Score" placeholder="Điểm"/>
+        <input type="text" [(ngModel)]="USER.Level" placeholder="Cấp"/>
+        <input type="text" [(ngModel)]="USER.Email" placeholder="Email"/>
+        <input type="text" [(ngModel)]="USER.Phone" placeholder="Số điện thoại"/>
+        <input type="text" [(ngModel)]="USER.Address" placeholder="Địa chỉ"/>
+    </div>
+    <div class="btn">
+        <button (click)="update()">Sửa</button>
+    </div>
+    <div class="btn">
+      <button (click)="cancel()">Thoát</button>
+  </div>
+      
+</div>
+</ion-content>

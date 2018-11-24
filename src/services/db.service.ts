@@ -71,5 +71,10 @@ export class DbService {
         return this.httpClient.get(url).toPromise();
     }
 
+    profileUpdate(fullname: string, address: string, email: string, telephone: string){
+        let url ='http://www.drdvietnam.org/bandotiepcan/service?action=updateUser&fullname='+fullname+'&address='+address+'&email='+email+'&telephone='+telephone;
+        return this.httpClient.get(url).toPromise(); 
+    }
+
     
 }
