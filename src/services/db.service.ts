@@ -76,5 +76,20 @@ export class DbService {
         return this.httpClient.get(url).toPromise(); 
     }
 
+    levelsGet(){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getAllLevel';
+        return this.httpClient.get(url).toPromise(); 
+    }
+
+    levelUpdate(Email, Level){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=update_Level&Email='+Email+'&Level='+Level;
+        return this.httpClient.get(url).toPromise(); 
+    }
+
+    scoreUpdate(Email, Score){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=update_Score&Email='+Email+'&Score='+Score;
+        return this.httpClient.get(url).toPromise(); 
+    }
+
     
 }

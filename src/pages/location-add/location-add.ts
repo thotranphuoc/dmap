@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { iLocation } from '../../interfaces/location.interface';
 import { LocalService } from '../../services/local.service';
 import { DbService } from '../../services/db.service';
+import { iUser } from '../../interfaces/user.interface';
+import { AppService } from '../../services/app.service';
 
 /**
  * Generated class for the LocationAddPage page.
@@ -38,6 +40,7 @@ export class LocationAddPage {
     private modalCtrl: ModalController,
     private localService: LocalService,
     private dbService: DbService,
+    private appService: AppService
     
   ) {
     this.LOCATION = this.localService.LOCATION_DEFAULT
@@ -102,6 +105,11 @@ export class LocationAddPage {
       this.dbService.locationNewAdd(this.LOC.Latitude,this.LOC.Longitude,this.LOC.Title,this.LOC.Address,this.LOC.Phone, this.LOC.User_Phone, this.LOC.LocationType_Ref,this.TYPES,this.localService.STRING )
       .then((res) => {
         console.log(res);
+        return this.updateScoreAndLevel()
+      })
+      .then((res)=>{
+        console.log(res);
+        this.appService.presentToast('Success', 5000)
         this.navCtrl.setRoot('MapPage');
       })
       .catch(err => {
@@ -136,6 +144,18 @@ export class LocationAddPage {
 
   go2Login(){
     this.navCtrl.push('LoginPage',{isBack: true});
+  }
+
+  updateScoreAndLevel(){
+    let USER: iUser = this.localService.USER;
+    let p1 = this.dbService.levelUpdate(USER.Email, USER.Level);
+    let p2 = this.dbService.scoreUpdate(USER.Email, USER.Score);
+    Promise.all([p1,p1]).then((res)=>{
+      console.log(res);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
   }
 
 }

@@ -16,17 +16,17 @@
 <ion-content>
   <div class="main">
     <div class="content_q">
-        <div class="header_question">
+        <div class="header_question" *ngIf="USER">
             <ion-grid>
                 <ion-row>
                   <ion-col>
                     
                   </ion-col>
                   <ion-col>
-                    <label id="score">2000</label>
+                    <label id="score">{{USER.Score}}</label>
                   </ion-col>
                   <ion-col>
-                      <label id="level">Level : 20</label>
+                      <label id="level">Level : {{USER.Level}}</label>
                   </ion-col>
                 </ion-row>
               </ion-grid>
