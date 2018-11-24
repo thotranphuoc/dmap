@@ -162,6 +162,7 @@ export class MapPage {
           text: 'Thông tin',
           handler: () => {
             console.log('Thông tin');
+            this.navCtrl.push('InformationPage');
           }
         },
         {
@@ -174,12 +175,14 @@ export class MapPage {
           text: 'Quà tặng và giải thưởng',
           handler: () => {
             console.log('Quà tặng và giải thưởng');
+            this.navCtrl.push('GiftPage');
           }
         },
         {
           text: 'Giúp đỡ',
           handler: () => {
             console.log('Giúp đỡ');
+            this.navCtrl.push('DmapHelpPage');
           }
         },
         {
