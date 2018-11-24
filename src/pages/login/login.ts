@@ -27,6 +27,7 @@ export class LoginPage {
       this.data = this.navParams.data;
       if(typeof(this.data) !=='undefined' && this.data.isBack){
         this.isBack = true;
+        console.log(this.isBack);
       }
     
   }

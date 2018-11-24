@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
 import { LoadingService } from '../../services/loading.service';
 import { iPosition } from '../../interfaces/position.interface';
 import { GmapService } from '../../services/gmap.service';
 import { DbService } from '../../services/db.service';
 import { iLocation } from '../../interfaces/location.interface';
+import { LocalService } from '../../services/local.service';
 
 declare var google: any;
 @IonicPage()
@@ -24,10 +25,12 @@ export class MapPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private alertCtrl: AlertController,
     private actionSheetCtrl: ActionSheetController,
     private loadingService: LoadingService,
     private gmapService: GmapService,
-    private dbService: DbService
+    private dbService: DbService,
+    private localService: LocalService
   ) {
     this.getLocations();
   }
@@ -133,12 +136,51 @@ export class MapPage {
   }
 
   go2AddLoc() {
-    this.navCtrl.push('LocationAddPage');
+    if (this.localService.USER) {
+      this.navCtrl.push('LocationAddPage');
+    } else {
+      this.showConfirm();
+    }
+
+  }
+
+
+  showConfirm() {
+    const confirm = this.alertCtrl.create({
+      // title: 'Use this lightsaber?',
+      message: 'Please login before continuing',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            console.log('Agree clicked');
+            this.navCtrl.push('LoginPage',{isBack: true});
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+
+  checkIfUserSigned() {
+    this.localService.USER
+    return
   }
 
   showInfo() {
     console.log('show info')
-    this.presentActionSheet();
+    if (this.localService.USER) {
+      this.presentActionSheet();
+    } else {
+      this.showConfirm();
+    }
   }
 
   presentActionSheet() {

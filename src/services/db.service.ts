@@ -66,7 +66,7 @@ export class DbService {
         return this.httpClient.get(url).toPromise();
     }
 
-    passwordForgetEmailSend(email){
+    passwordForgetEmailSend(email: string){
         let url ="http://www.drdvietnam.org/bandotiepcan/service?action=forgotpass&email="+email;
         return this.httpClient.get(url).toPromise();
     }
