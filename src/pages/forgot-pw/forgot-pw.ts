@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppService } from '../../services/app.service';
 import { DbService } from '../../services/db.service';
+import { LoadingService } from '../../services/loading.service';
 
 /**
  * Generated class for the ForgotPwPage page.
@@ -21,7 +22,8 @@ export class ForgotPwPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private appService: AppService,
-    private dbService: DbService
+    private dbService: DbService,
+    private loadingService: LoadingService
     ) {
   }
 
@@ -29,6 +31,7 @@ export class ForgotPwPage {
     console.log('ionViewDidLoad ForgotPwPage');
   }
   recoverPw(){
+    this.loadingService.startLoading();
     // alert('this function is under dev')
     console.log(this.email);
     if(this.checkifAvailable(this.email)){
@@ -36,11 +39,13 @@ export class ForgotPwPage {
       .then((res:any)=>{
         if(res.result == '1'){
           this.appService.presentToast('Success. Please check inbox',5000);
-          this.navCtrl.setRoot('MapPage')
+          this.navCtrl.setRoot('MapPage');
+          this.loadingService.hideLoading();
         }
       })
       .catch((err)=>{
         console.log(err);
+        this.loadingService.hideLoading();
       })
     }
     
