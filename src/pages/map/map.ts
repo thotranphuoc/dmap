@@ -185,29 +185,8 @@ export class MapPage {
 
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Select: ',
+      title: 'Xin chào: ' + this.localService.USER.FullName,
       buttons: [
-        {
-          text: 'Loại địa điểm',
-          // role: 'destructive',
-          handler: () => {
-            console.log('Loại địa điểm clicked');
-          }
-        },
-        {
-          text: 'Câp nhật dữ liệu',
-          handler: () => {
-            console.log('Câp nhật dữ liệu');
-            
-          }
-        },
-        {
-          text: 'Thông tin',
-          handler: () => {
-            console.log('Thông tin');
-            this.navCtrl.push('InformationPage');
-          }
-        },
         {
           text: 'Thông tin cá nhân',
           handler: () => {
@@ -222,6 +201,29 @@ export class MapPage {
             this.navCtrl.push('GiftPage');
           }
         },
+        {
+          text: 'Danh sách địa điểm cập nhật',
+          handler: () => {
+            console.log('Danh sách địa điểm cập nhật');
+            
+          }
+        },
+        {
+          text: 'Hiển thị theo loại công trình',
+          // role: 'destructive',
+          handler: () => {
+            console.log('Hiển thị theo loại công trình');
+          }
+        },
+        
+        {
+          text: 'Giới thiệu',
+          handler: () => {
+            console.log('Giới thiệu');
+            this.navCtrl.push('InformationPage');
+          }
+        },
+        
         {
           text: 'Giúp đỡ',
           handler: () => {
