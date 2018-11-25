@@ -50,4 +50,10 @@ export class ProfileUpdatePage {
     this.navCtrl.pop();
   }
 
+  changePassword()
+  {
+    console.log('Change Password');
+    this.navCtrl.push('PasswordChangePage');
+  }
+
 }
