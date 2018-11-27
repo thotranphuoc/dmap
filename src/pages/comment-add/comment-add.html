@@ -11,14 +11,12 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
     <div class="inputs">
-        <textarea #comment name="" id="" cols="40" rows="10" style=""></textarea>
+        <textarea [(ngModel)]="CommentStr" name="CommentStr" id="" cols="40" rows="10"></textarea>
     </div>
     <div class="btn">
-      <button (click)="addComment(comment.value)">Thêm Comment</button>
+      <button (click)="addComment()">Thêm Comment</button>
     </div>
 
 <hr>
