@@ -14,8 +14,8 @@
 
 
 <ion-content padding>
-<textarea #comment name="" id="" cols="30" rows="10"></textarea>
-<button (click)="addComment(comment.value)">Add Comment</button>
+<textarea [(ngModel)]="CommentStr" name="CommentStr" id="" cols="30" rows="10"></textarea>
+<button (click)="addComment()">Add Comment</button>
 <hr>
 <div class="comment" *ngFor="let COMMENT of COMMENTS">
   <div id="massage">{{COMMENT.ContentMes}}</div>

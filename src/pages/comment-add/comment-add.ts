@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DbService } from '../../services/db.service';
 import { LocalService } from '../../services/local.service';
 import { iUser } from '../../interfaces/user.interface';
+import { isTrueProperty } from 'ionic-angular/util/util';
 
 /**
  * Generated class for the CommentAddPage page.
@@ -20,6 +21,7 @@ export class CommentAddPage {
   ID;
   USER: iUser;
   COMMENTS = [];
+  CommentStr = '';
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -32,7 +34,11 @@ export class CommentAddPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommentAddPage');
-    this.getComments();
+    if(typeof(this.ID)!=='undefined'){
+      this.getComments();
+    }else{
+      this.navCtrl.setRoot('MapPage');
+    }
   }
 
   getComments(){
@@ -45,17 +51,36 @@ export class CommentAddPage {
     })
   }
 
-  addComment(comment){
+  doAddComment(comment){
     console.log(comment);
     let d = new Date();
-    this.dbService.commentAdd(this.USER.FullName, this.ID, d.toString(), comment)
+    this.dbService.commentAdd(this.localService.USER.FullName, this.ID, d.toString(), comment)
     .then((res: any)=>{
       console.log(res);
+      this.CommentStr = '';
       this.getComments();
     })
     .catch((err)=>{
       console.log(err);
     })
   }
+
+  checkIfOK(comment: string){
+    if(comment.trim().length<1) return false;
+    // if(!this.USER){ return false};
+    return true;
+  }
+
+  addComment(){
+    if(this.checkIfOK(this.CommentStr)){
+      if(this.localService.USER){
+        this.doAddComment(this.CommentStr);
+      }else{
+        this.navCtrl.push('LoginPage',{isBack: true})
+      }
+    }
+  }
+
+
 
 }
