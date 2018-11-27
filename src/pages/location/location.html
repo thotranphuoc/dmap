@@ -13,7 +13,51 @@
     <div class="content_loc">
         <div *ngIf="LOCATION">
             <div id="Title" class="loc">{{LOCATION.Title}}</div>
-            <div class="star"><img src="../../assets/imgs/5.png" alt=""></div>
+            <!-- <div class="star"><img src="{{STAR_URL}}" alt=""></div> -->
+            <ion-grid>
+              <ion-row *ngIf="LOCATION.Star =='0'">
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='1'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='2'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='3'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='4'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='5'"></ion-col>
+              </ion-row>
+              <ion-row *ngIf="LOCATION.Star =='1'">
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='1'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='2'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='3'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='4'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='5'"></ion-col>
+              </ion-row>
+              <ion-row *ngIf="LOCATION.Star =='2'">
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='1'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='2'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='3'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='4'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='5'"></ion-col>
+              </ion-row>
+              <ion-row *ngIf="LOCATION.Star =='3'">
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='1'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='2'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='3'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='4'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='5'"></ion-col>
+              </ion-row>
+              <ion-row *ngIf="LOCATION.Star =='4'">
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='1'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='2'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='3'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='4'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_gray.png" alt="" (click)="LOCATION.Star ='5'"></ion-col>
+              </ion-row>
+              <ion-row *ngIf="LOCATION.Star =='5'">
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='1'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='2'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='3'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='4'"></ion-col>
+                <ion-col><img src="../../assets/imgs/star_yellow.png" alt="" (click)="LOCATION.Star ='5'"></ion-col>
+              </ion-row>
+            </ion-grid>
             <div class="cls_address">
               <div id="Address" class="loc">Địa chỉ: {{LOCATION.Address}}</div>
               <div class ="cls_help"><button >Chỉ đường</button></div>
