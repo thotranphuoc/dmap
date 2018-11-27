@@ -4,6 +4,7 @@ import { DbService } from '../../services/db.service';
 import { LocalService } from '../../services/local.service';
 import { iUser } from '../../interfaces/user.interface';
 import { isTrueProperty } from 'ionic-angular/util/util';
+import { AppService } from '../../services/app.service';
 
 /**
  * Generated class for the CommentAddPage page.
@@ -26,7 +27,8 @@ export class CommentAddPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private dbService: DbService,
-    private localService: LocalService
+    private localService: LocalService,
+    private appService: AppService
     ) {
       this.ID = this.navParams.get('LocationID');
       this.USER = this.localService.USER;
@@ -78,6 +80,8 @@ export class CommentAddPage {
       }else{
         this.navCtrl.push('LoginPage',{isBack: true})
       }
+    }else{
+      this.appService.showAlert('Opps','Fill the comment please');
     }
   }
 
