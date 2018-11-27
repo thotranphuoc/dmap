@@ -38,9 +38,11 @@ export class ForgotPwPage {
       this.dbService.passwordForgetEmailSend(this.email)
       .then((res:any)=>{
         if(res.result == '1'){
-          this.appService.presentToast('Thành công. Xin vui lòng kiểm tra lại email',5000);
-          this.navCtrl.setRoot('MapPage');
-          this.loadingService.hideLoading();
+          //this.appService.presentToast('Thành công. Xin vui lòng kiểm tra lại email',5000);
+          alert('Thành công. Xin vui lòng kiểm tra lại email');
+          this.navCtrl.push('PasswordChangePage');
+          //this.navCtrl.setRoot('MapPage');
+          //this.loadingService.hideLoading();
         }
       })
       .catch((err)=>{
