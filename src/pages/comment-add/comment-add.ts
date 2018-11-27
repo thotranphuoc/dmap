@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DbService } from '../../services/db.service';
+import { LocalService } from '../../services/local.service';
+import { iUser } from '../../interfaces/user.interface';
 
 /**
  * Generated class for the CommentAddPage page.
@@ -14,12 +17,45 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'comment-add.html',
 })
 export class CommentAddPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  ID;
+  USER: iUser;
+  COMMENTS = [];
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private dbService: DbService,
+    private localService: LocalService
+    ) {
+      this.ID = this.navParams.get('LocationID');
+      this.USER = this.localService.USER;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommentAddPage');
+    this.getComments();
+  }
+
+  getComments(){
+    let ID = this.ID
+    this.COMMENTS = [];
+    this.dbService.commentsGet(ID)
+    .then((res: any)=>{
+      console.log(res);
+      this.COMMENTS = res;
+    })
+  }
+
+  addComment(comment){
+    console.log(comment);
+    let d = new Date();
+    this.dbService.commentAdd(this.USER.FullName, this.ID, d.toString(), comment)
+    .then((res: any)=>{
+      console.log(res);
+      this.getComments();
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
 
 }

@@ -14,6 +14,12 @@
 
 
 <ion-content padding>
-<textarea name="" id="" cols="30" rows="10"></textarea>
-<button>Upd</button>
+<textarea #comment name="" id="" cols="30" rows="10"></textarea>
+<button (click)="addComment(comment.value)">Add Comment</button>
+<hr>
+<div class="comment" *ngFor="let COMMENT of COMMENTS">
+  <div id="massage">{{COMMENT.ContentMes}}</div>
+  <div id="name">{{COMMENT.Name}}</div>
+  <div id="time">{{COMMENT.Date_Comment}}</div>
+</div>
 </ion-content>

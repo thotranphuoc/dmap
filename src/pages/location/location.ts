@@ -47,7 +47,7 @@ export class LocationPage {
   }
 
   go2CommentAdd(){
-    this.navCtrl.push('CommentAddPage');
+    this.navCtrl.push('CommentAddPage', {LocationID: this.ID});
   }
 
   

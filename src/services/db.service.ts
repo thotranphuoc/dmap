@@ -91,5 +91,15 @@ export class DbService {
         return this.httpClient.get(url).toPromise(); 
     }
 
+    commentAdd(FullName: string, LocationID: string,Date_Comment: string,comment: string ){
+        let url='http://www.drdvietnam.org/bandotiepcan/service?action=insertComment&FullName='+FullName+'&LocationID='+LocationID+'&Comment='+comment+'&Date_Comment='+ Date_Comment;
+        return this.httpClient.get(url).toPromise(); 
+    }
+
+    commentsGet(ID: string){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getAllComment&LocationID='+ID;
+        return this.httpClient.get(url).toPromise(); 
+    }
+
     
 }
