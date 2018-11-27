@@ -42,12 +42,17 @@ export class LocationSetPage {
     setTimeout(() => {
       this.mapEl = document.getElementById('map');
       this.initMap(this.mapEl)
-    }, 1000)
+    }, 1500)
+  }
+
+  reloadMap() {
+    this.initMap(this.mapEl);
+    this.isOrigMarkerLoaded = false;
   }
 
   initMap(mapElement) {
     console.log('start initMap()')
-    if (this.CURRENT_LOCATION && this.CURRENT_LOCATION.lat !==0 && this.CURRENT_LOCATION.lng !==0) {
+    if (this.CURRENT_LOCATION && this.CURRENT_LOCATION.lat !== 0 && this.CURRENT_LOCATION.lng !== 0) {
       console.log('user location set');
       console.log(this.CURRENT_LOCATION)
       this.showMap(this.CURRENT_LOCATION, mapElement);
@@ -149,16 +154,28 @@ export class LocationSetPage {
   }
 
   centerMap() {
+    this.isOrigMarkerLoaded = false;
     console.log('center Map');
     console.log(this.map);
+    if (this.USER_CURRENT_LOCATION) {
+      this.setCenter();
+    }else{
+      this.gmapService.getCurrentLocation().then((res: any)=>{
+        console.log(res);
+        this.USER_CURRENT_LOCATION = res;
+        this.setCenter();
+      })
+    }
+  }
+  setCenter(){
     this.map.setCenter(this.USER_CURRENT_LOCATION);
-    this.userMarker.setMap(null);
-    this.userMarker = new google.maps.Marker({
-      position: this.USER_CURRENT_LOCATION,
-      map: this.map,
-    })
-    // this.gmapService.addMarkerToMapWithNewLocation(this.map,this.USER_CURRENT_LOCATION);
-    this.NEW_SELECTED_LOCATION = this.USER_CURRENT_LOCATION;
-    console.log(this.NEW_SELECTED_LOCATION);
+      this.userMarker.setMap(null);
+      this.userMarker = new google.maps.Marker({
+        position: this.USER_CURRENT_LOCATION,
+        map: this.map,
+      })
+      // this.gmapService.addMarkerToMapWithNewLocation(this.map,this.USER_CURRENT_LOCATION);
+      this.NEW_SELECTED_LOCATION = this.USER_CURRENT_LOCATION;
+      console.log(this.NEW_SELECTED_LOCATION);
   }
 }

@@ -13,7 +13,11 @@
   <button ion-button block (click)="setLocation()">OK</button>
   <button ion-button block color="danger" (click)="cancelLocation()">Cancel</button>
 </div> -->
-
+<ion-fab right left>
+  <button ion-fab outline color="secondary" mini (click)="reloadMap()">
+    <ion-icon name="md-refresh"></ion-icon>
+  </button>
+</ion-fab>
 <ion-fab right top>
   <button ion-fab outline color="secondary" mini (click)="centerMap()">
     <ion-icon name="ios-locate-outline"></ion-icon>

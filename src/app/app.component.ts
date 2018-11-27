@@ -13,7 +13,7 @@ export class MyApp {
     { title: 'Map', component: 'MapPage', icon: 'map' },
   ];
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
-    this.initializeApp();
+    // this.initializeApp();
     
   }
 

@@ -29,7 +29,7 @@ export class LoadingService {
                     console.log('loading stop after timeout', this.count, this.isLoading);
                     this.hideLoading();
                     // alert('Please turn on internet and location permission. Then open app again')
-                }, 5000)
+                }, 20000)
             })
                 .catch((err) => {
                     console.log(err);
@@ -53,7 +53,7 @@ export class LoadingService {
                     console.log(MESSAGE + ' stop after timeout', this.count, this.isLoading);
                     this.hideLoading();
                     // alert('Please turn on internet and location permission. Then open app again')
-                }, 5000)
+                }, 20000)
             })
                 .catch((err) => {
                     console.log(err);

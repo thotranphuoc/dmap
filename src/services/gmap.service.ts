@@ -40,14 +40,14 @@ export class GmapService {
                         console.log({ MSG: 'navigator.geolocation not available' })
                         let pos = { lat: 10.780482, lng: 106.70223 };
                         this.updateCurrentLocation(pos);
-                        this.appService.showToastWithCloseButton('Please enable location');
+                        this.appService.showToastWithCloseButton('Please enable location in brownser. Then restart the app');
                         resolve(pos)
                     })
                 } else {
                     console.log('navigator not allowed')
                     let pos = { lat: 10.780482, lng: 106.70223 };
                     this.updateCurrentLocation(pos);
-                    this.appService.showToastWithCloseButton('Please enable location')
+                    this.appService.showToastWithCloseButton('Please enable location in brownser. Then restart the app')
                     resolve(pos)
                 }
             }
