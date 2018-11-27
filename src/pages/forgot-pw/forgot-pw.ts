@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppService } from '../../services/app.service';
 import { DbService } from '../../services/db.service';
 import { LoadingService } from '../../services/loading.service';
+import { LocalService } from '../../services/local.service';
 
 /**
  * Generated class for the ForgotPwPage page.
@@ -23,7 +24,8 @@ export class ForgotPwPage {
     public navParams: NavParams,
     private appService: AppService,
     private dbService: DbService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private localService: LocalService
     ) {
   }
 
@@ -39,10 +41,15 @@ export class ForgotPwPage {
       .then((res:any)=>{
         if(res.result == '1'){
           //this.appService.presentToast('Thành công. Xin vui lòng kiểm tra lại email',5000);
+          this.localService.USER.Email=this.email;
           alert('Thành công. Xin vui lòng kiểm tra lại email');
           this.navCtrl.push('PasswordChangePage');
           //this.navCtrl.setRoot('MapPage');
           //this.loadingService.hideLoading();
+        }
+        else
+        {
+          alert('Khôi phục mật khẩu thất bại. Xin vui lòng kiểm tra lại');
         }
       })
       .catch((err)=>{

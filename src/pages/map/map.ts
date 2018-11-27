@@ -232,7 +232,7 @@ export class MapPage {
           }
         },
         {
-          text: 'Thoát',
+          text: 'Đăng xuất',
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
