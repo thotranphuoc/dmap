@@ -34,10 +34,10 @@ export class ProfileUpdatePage {
     .then((res: any)=>{
       console.log(res);
       if(res.result == '1'){
-        this.appService.presentToast('Profile updated successfully', 5000);
+        this.appService.presentToast('Cập nhật thành công', 5000);
         this.navCtrl.pop();
       }else{
-        this.appService.presentToast('Error, please contact admin', 5000);
+        this.appService.presentToast('Lỗi, Xin vui lòng liên hệ với quản trị viên', 5000);
       }
     })
     .catch((err)=>{

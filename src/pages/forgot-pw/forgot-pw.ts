@@ -38,7 +38,7 @@ export class ForgotPwPage {
       this.dbService.passwordForgetEmailSend(this.email)
       .then((res:any)=>{
         if(res.result == '1'){
-          this.appService.presentToast('Success. Please check inbox',5000);
+          this.appService.presentToast('Thành công. Xin vui lòng kiểm tra lại email',5000);
           this.navCtrl.setRoot('MapPage');
           this.loadingService.hideLoading();
         }
@@ -53,8 +53,7 @@ export class ForgotPwPage {
 
   checkifAvailable(email){
     if(email.trim().length<1){
-
-      this.appService.showToastWithCloseButton('email cannot be empty')
+      this.appService.showToastWithCloseButton('Email có thể bị rỗng.')
       return false;
     }
     return true;

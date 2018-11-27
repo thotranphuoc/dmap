@@ -50,7 +50,7 @@ export class LoginPage {
           this.navCtrl.setRoot('MapPage')
         }
       }else{
-        alert('User or password is wrong');
+        alert('Sai Tên đăng nhập hoặc mật khẩu, xin vui lòng thử lại.');
       }
       
       

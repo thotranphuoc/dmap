@@ -38,10 +38,10 @@ export class PasswordChangePage {
         .then((res: any) => {
           console.log(res);
           if(res.result == '1'){
-            alert('Password changed successfully');
+            alert('Thay đổi mật khẩu thành công');
             this.navCtrl.setRoot('MapPage');
           }else{
-            alert('Opps, failed');
+            alert('Lỗi, Xin vui lòng thử lại.');
           }
         })
         .catch((err) => {

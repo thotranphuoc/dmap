@@ -109,7 +109,7 @@ export class LocationAddPage {
       })
       .then((res)=>{
         console.log(res);
-        this.appService.presentToast('Success', 5000)
+        this.appService.presentToast('Thành công', 5000)
         this.navCtrl.setRoot('MapPage');
       })
       .catch(err => {

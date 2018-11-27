@@ -148,16 +148,16 @@ export class MapPage {
   showConfirm() {
     const confirm = this.alertCtrl.create({
       // title: 'Use this lightsaber?',
-      message: 'Please login before continuing',
+      message: 'Vui lòng đăng nhập để dùng tính năng này.',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Huỷ bỏ',
           handler: () => {
             console.log('Disagree clicked');
           }
         },
         {
-          text: 'OK',
+          text: 'Chấp nhận',
           handler: () => {
             console.log('Agree clicked');
             this.navCtrl.push('LoginPage',{isBack: true});
