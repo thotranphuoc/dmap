@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastController } from 'ionic-angular';
+import { ToastController, AlertController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 
 
@@ -11,7 +11,8 @@ export class AppService {
     count: number = 0;
     isLoading: boolean = false;
     constructor(
-        public toastCtrl: ToastController
+        public toastCtrl: ToastController,
+        private alertCtrl: AlertController
     ) { }
 
     presentToast(MSG: string, timeDuration: number) {
@@ -30,4 +31,13 @@ export class AppService {
         });
         toast.present();
     }
+
+    showAlert(TITLE: string, SUBTITLE: string) {
+        const alert = this.alertCtrl.create({
+          title: TITLE,
+          subTitle: SUBTITLE,
+          buttons: ['OK']
+        });
+        alert.present();
+      }
 }

@@ -19,12 +19,12 @@ import { AppService } from '../../services/app.service';
   templateUrl: 'location-add.html',
 })
 export class LocationAddPage {
-  LOCATION: iLocation;
+  // LOCATION: iLocation;
   QUESTIONTYPES: any[] = [];
   QUESTIONS: any[] = [];
   LOCATIONTYPES: any[] = [];
   TYPES = '';
-  LOC: iLOC = {
+  LOCATION: iLOC = {
     TempID: '',
     Latitude: '',
     Longitude: '',
@@ -32,7 +32,8 @@ export class LocationAddPage {
     Address: '',
     Phone: '',
     User_Phone: '',
-    LocationType_Ref: 0
+    LocationType_Ref: 0,
+    Star: '0'
   }
   constructor(
     public navCtrl: NavController,
@@ -43,7 +44,7 @@ export class LocationAddPage {
     private appService: AppService
     
   ) {
-    this.LOCATION = this.localService.LOCATION_DEFAULT
+    // this.LOCATION = this.localService.LOCATION_DEFAULT
   }
 
   ionViewDidLoad() {
@@ -96,13 +97,20 @@ export class LocationAddPage {
       })
   }
 
-  
+  send2Admin(){
+    console.log(this.LOCATION)
+    if( this.checkIfFullFill() ){
+      this.doSend2Admin();
+    }else{
+      this.appService.showAlert('Error', 'Please fill all required information');
+    }
+  }
 
-  send2Admin() {
-    console.log(this.LOC);
+  doSend2Admin() {
+    console.log(this.LOCATION);
     console.log(this.TYPES, this.localService.STRING);
     if(this.localService.USER){
-      this.dbService.locationNewAdd(this.LOC.Latitude,this.LOC.Longitude,this.LOC.Title,this.LOC.Address,this.LOC.Phone, this.LOC.User_Phone, this.LOC.LocationType_Ref,this.TYPES,this.localService.STRING )
+      this.dbService.locationNewAdd(this.LOCATION.Latitude,this.LOCATION.Longitude,this.LOCATION.Title,this.LOCATION.Address,this.LOCATION.Phone, this.LOCATION.User_Phone, this.LOCATION.LocationType_Ref,this.TYPES,this.localService.STRING )
       .then((res) => {
         console.log(res);
         return this.updateScoreAndLevel()
@@ -130,8 +138,8 @@ export class LocationAddPage {
       //   this.SHOP.SHOP_LOCATION = data.NEW_LOCATION;
       // }
       if (data.NEW_LOCATION) {
-        this.LOC.Latitude = data.NEW_LOCATION.lat;
-        this.LOC.Longitude = data.NEW_LOCATION.lng;
+        this.LOCATION.Latitude = data.NEW_LOCATION.lat;
+        this.LOCATION.Longitude = data.NEW_LOCATION.lng;
       }
     })
     mapModal.present();
@@ -139,7 +147,7 @@ export class LocationAddPage {
 
   selectLocation(loc) {
     console.log(loc);
-    this.LOC.LocationType_Ref = loc.LocationTypeID;
+    this.LOCATION.LocationType_Ref = loc.LocationTypeID;
   }
 
   go2Login(){
@@ -158,6 +166,18 @@ export class LocationAddPage {
     })
   }
 
+  checkIfFullFill(){
+    if(this.LOCATION.Address.trim().length<1) return false;
+    if(this.LOCATION.Latitude.trim().length<1) return false;
+    if(this.LOCATION.Longitude.trim().length<1) return false;
+    if(this.LOCATION.Phone.trim().length<1) return false;
+    if(this.LOCATION.Star.trim().length<1) return false;
+    if(this.LOCATION.Title.trim().length<1) return false;
+    if(this.LOCATION.User_Phone.trim().length<1) return false;
+    if(this.TYPES.trim().length<1) return false;
+    return true;
+  }
+
 }
 
 export interface iLOC {
@@ -169,4 +189,5 @@ export interface iLOC {
   Phone: string,
   User_Phone: string,
   LocationType_Ref: number, // Location ID
+  Star: string
 }

@@ -46,5 +46,9 @@ export class LocationPage {
     })
   }
 
+  go2CommentAdd(){
+    this.navCtrl.push('CommentAddPage');
+  }
+
   
 }
