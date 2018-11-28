@@ -81,7 +81,7 @@ export class CommentAddPage {
         this.navCtrl.push('LoginPage',{isBack: true})
       }
     }else{
-      this.appService.showAlert('Opps','Fill the comment please');
+      this.appService.showAlert('Opps','Xin vui lòng điền thông tin trước khi hoàn tất');
     }
   }
 

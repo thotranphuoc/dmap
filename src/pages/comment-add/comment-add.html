@@ -7,19 +7,22 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>comment-add</ion-title>
+    <ion-title>Thêm comment</ion-title>
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
-<textarea [(ngModel)]="CommentStr" name="CommentStr" id="" cols="30" rows="10"></textarea>
-<button (click)="addComment()">Add Comment</button>
+    <div class="inputs">
+        <textarea [(ngModel)]="CommentStr" name="CommentStr" id="" cols="40" rows="10"></textarea>
+    </div>
+    <div class="btn">
+      <button (click)="addComment()">Thêm Comment</button>
+    </div>
+
 <hr>
 <div class="comment" *ngFor="let COMMENT of COMMENTS">
   <div id="massage">{{COMMENT.ContentMes}}</div>
-  <div id="name">{{COMMENT.Name}}</div>
-  <div id="time">{{COMMENT.Date_Comment}}</div>
+  <div id="name"><i>{{COMMENT.Name}}</i></div>
+  <div id="time"><i>{{COMMENT.Date_Comment}}</i></div>
 </div>
 </ion-content>
