@@ -52,11 +52,11 @@ export class PasswordChangePage {
 
   checkIfValid(old, new1, new2) {
     if (old.length < 1 || new1.length < 1 || new1.length < 1) {
-      alert('Cannot be empty');
+      alert('Chưa nhập dữ liệu');
       return false;
     }
     if (new1 !== new2) {
-      alert('Password mismatched');
+      alert('Password Không khóp');
       return false;
     }
     return true;

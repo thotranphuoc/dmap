@@ -40,14 +40,14 @@ export class GmapService {
                         console.log({ MSG: 'navigator.geolocation not available' })
                         let pos = { lat: 10.780482, lng: 106.70223 };
                         this.updateCurrentLocation(pos);
-                        this.appService.showToastWithCloseButton('Please enable location in brownser. Then restart the app');
+                        this.appService.showToastWithCloseButton('Vui lòng bật định vị sau đó khởi động lại ứng dụng');
                         resolve(pos)
                     })
                 } else {
                     console.log('navigator not allowed')
                     let pos = { lat: 10.780482, lng: 106.70223 };
                     this.updateCurrentLocation(pos);
-                    this.appService.showToastWithCloseButton('Please enable location in brownser. Then restart the app')
+                    this.appService.showToastWithCloseButton('Vui lòng bật định vị sau đó khởi động lại ứng dụng')
                     resolve(pos)
                 }
             }
@@ -154,7 +154,7 @@ export class GmapService {
                     let DISTANCE = this.calcDistance(directionsDisplay.getDirections());
                     resolve({ DISTANCE: DISTANCE, RESULT: 'OK' });
                 } else {
-                    alert('Direction request failed due to' + status);
+                    alert('Yêu cầu chỉ đường không thành công ' + status);
                     reject({ RESULT: 'Failed', ERROR: status });
                 }
             })

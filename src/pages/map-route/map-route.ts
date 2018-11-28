@@ -138,7 +138,7 @@ export class MapRoutePage {
     this.userMarker = new google.maps.Marker({
       position: pos,
       map: this.map,
-      title: 'New Value',
+      title: 'Dữ liệu mới',
       // draggable: true
     })
 
