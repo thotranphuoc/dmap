@@ -80,4 +80,6 @@ export class LocalService {
         User_Phone: '',
 
     }
+
+    LOCATIONS: iLocation[] = [];
 }

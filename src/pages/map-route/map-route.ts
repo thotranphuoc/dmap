@@ -4,6 +4,8 @@ import { GmapService } from '../../services/gmap.service';
 import { iLocation } from '../../interfaces/location.interface';
 import { iPosition } from '../../interfaces/position.interface';
 import { LoadingService } from '../../services/loading.service';
+import { iLOC } from '../location-add/location-add';
+import { LocalService } from '../../services/local.service';
 
 declare var google: any;
 
@@ -14,6 +16,7 @@ declare var google: any;
 })
 export class MapRoutePage {
   LOCATION: iLocation;
+  LOCATIONS: iLocation[] = [];
   map: any;
   loading: any;
   mapEl: any;
@@ -21,14 +24,17 @@ export class MapRoutePage {
   isOrigMarkerLoaded: boolean = false;
   USER_CURRENT_LOCATION: iPosition = null;
   DestinationPos: iPosition;
+  isLoaded = false;
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private gmapService: GmapService,
     private loadingService: LoadingService,
-    ) {
+    private localService: LocalService
+  ) {
     this.LOCATION = this.navParams.get('LOCATION');
-    this.DestinationPos = {lat: Number(this.LOCATION.Latitude), lng: Number(this.LOCATION.Longitude)};
+    this.LOCATIONS = this.localService.LOCATIONS
+    this.DestinationPos = { lat: Number(this.LOCATION.Latitude), lng: Number(this.LOCATION.Longitude) };
   }
 
   ionViewDidLoad() {
@@ -94,11 +100,19 @@ export class MapRoutePage {
         google.maps.event.addListener(this.map, 'idle', () => {
           console.log('map was loaded fully');
           this.loadingService.hideLoading();
-          this.drawRoute();
-          if (!this.isOrigMarkerLoaded) {
-            this.addMarker(this.DestinationPos);
-            // this.NEW_SELECTED_LOCATION = position;
-            this.isOrigMarkerLoaded = true;
+          if (!this.isLoaded) {
+            this.drawRoute();
+            // if (!this.isOrigMarkerLoaded) {
+            //   this.addMarker(this.DestinationPos);
+            //   // this.NEW_SELECTED_LOCATION = position;
+            //   this.isOrigMarkerLoaded = true;
+            // }
+
+            this.LOCATIONS.forEach(LOCATION => {
+              let POS: iPosition = { lat: Number(LOCATION.Latitude), lng: Number(LOCATION.Longitude) };
+              this.gmapService.addMarkerWithImageToMapWithIDReturnPromiseWithMarkerWithoutRoute2Location(this.map, POS, LOCATION);
+            })
+            this.isLoaded = true;
           }
         })
 
@@ -137,12 +151,12 @@ export class MapRoutePage {
     // })
   }
 
-  drawRoute(){
-      this.gmapService.drawDirection(this.map, this.USER_CURRENT_LOCATION, this.DestinationPos)
-      .then((res)=>{
+  drawRoute() {
+    this.gmapService.drawDirection(this.map, this.USER_CURRENT_LOCATION, this.DestinationPos)
+      .then((res) => {
         console.log(res);
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
       })
   }

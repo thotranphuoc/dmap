@@ -111,6 +111,27 @@ export class GmapService {
         })
     }
 
+    addMarkerWithImageToMapWithIDReturnPromiseWithMarkerWithoutRoute2Location(map, position: iPosition, LOCATION: iLocation) {
+        return new Promise((resolve, reject) => {
+            let pos = new google.maps.LatLng(position.lat, position.lng);
+            let image = {
+                url: LOCATION.Url_Image,
+                // This marker is 20 pixels wide by 32 pixels high.
+                // size: new google.maps.Size(75, 56),
+                // The origin for this image is (0, 0).
+                // origin: new google.maps.Point(37, 28),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                // anchor: new google.maps.Point(0, 26),
+                scaledSize: new google.maps.Size(45, 53),
+            };
+            let marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                icon: image
+            })
+        })
+    }
+
     drawDirection(map, DEPARTURE: iPosition, DESTINATION: iPosition) {
         let departure = new google.maps.LatLng(DEPARTURE.lat, DEPARTURE.lng);
         let destination = new google.maps.LatLng(DESTINATION.lat, DESTINATION.lng);

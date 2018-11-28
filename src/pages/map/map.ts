@@ -103,6 +103,7 @@ export class MapPage {
         .then((res: any) => {
           console.log(res);
           this.LOCATIONS = res;
+          this.localService.LOCATIONS = this.LOCATIONS;
           resolve();
         })
         .catch(err => {

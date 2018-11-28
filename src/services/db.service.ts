@@ -101,5 +101,13 @@ export class DbService {
         return this.httpClient.get(url).toPromise(); 
     }
 
+    avatarUpdate(email: string, data64: string){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=ChangeImageInformation&email='+email+'&avata='+data64;
+        return this.httpClient.get(url).toPromise();
+    }
     
+    avatarGet(email: string){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=GetImageInformation&email='+email;
+        return this.httpClient.get(url).toPromise();
+    }
 }

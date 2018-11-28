@@ -10,6 +10,7 @@ import { GmapService } from '../services/gmap.service';
 import { LocalService } from '../services/local.service';
 import { DbService } from '../services/db.service';
 import { AppService } from '../services/app.service';
+import { ImageService } from '../services/image.service';
 
 // import { HomePage } from '../pages/home/home';
 
@@ -36,7 +37,8 @@ import { AppService } from '../services/app.service';
     GmapService,
     LocalService,
     DbService,
-    AppService
+    AppService,
+    ImageService
   ]
 })
 export class AppModule {}
