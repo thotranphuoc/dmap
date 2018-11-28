@@ -50,5 +50,8 @@ export class LocationPage {
     this.navCtrl.push('CommentAddPage', {LocationID: this.ID});
   }
 
+  go2MapRoute(){
+    this.navCtrl.push('MapRoutePage', {LOCATION: this.LOCATION});
+  }
   
 }

@@ -40,7 +40,7 @@ export class LocationSetPage {
     console.log('ionViewDidLoad LocationPage');
     this.loadingService.startLoading();
     setTimeout(() => {
-      this.mapEl = document.getElementById('map');
+      this.mapEl = document.getElementById('map1');
       this.initMap(this.mapEl)
     }, 1500)
   }

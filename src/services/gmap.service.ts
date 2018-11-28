@@ -110,4 +110,46 @@ export class GmapService {
             })
         })
     }
+
+    drawDirection(map, DEPARTURE: iPosition, DESTINATION: iPosition) {
+        let departure = new google.maps.LatLng(DEPARTURE.lat, DEPARTURE.lng);
+        let destination = new google.maps.LatLng(DESTINATION.lat, DESTINATION.lng);
+        return new Promise((resolve, reject) => {
+            let directionsService = new google.maps.DirectionsService;
+            let directionsDisplay = new google.maps.DirectionsRenderer({
+                preserveViewport: true
+            })
+            // directionsDisplay.preserveViewport = fales;
+            directionsDisplay.setMap(map);
+
+            directionsService.route({
+                origin: departure,
+                destination: destination,
+                travelMode: 'DRIVING'
+            }, (response, status) => {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                    console.log(directionsDisplay.getDirections());
+                    let DISTANCE = this.calcDistance(directionsDisplay.getDirections());
+                    resolve({ DISTANCE: DISTANCE, RESULT: 'OK' });
+                } else {
+                    alert('Direction request failed due to' + status);
+                    reject({ RESULT: 'Failed', ERROR: status });
+                }
+            })
+        })
+        // this.calculateAndDisplayRoute(directionsService, directionsDisplay, DEPARTURE, DESTINATION){
+
+        // }
+    }
+    calcDistance(result) {
+        var total = 0;
+        var myRoute = result.routes[0];
+        for (var index = 0; index < myRoute.legs.length; index++) {
+            total += myRoute.legs[index].distance.value;
+        }
+        total = total / 1000;
+        console.log('Distance in km :', total);
+        return total;
+    }
 }

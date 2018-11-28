@@ -37,7 +37,7 @@ export class PopOverPage {
 
   go2Location() {
     this.closePopover();
-    this.app.getRootNavs()[0].setRoot('LocationPage', {LOCATION: this.LOCATION});
+    this.app.getRootNavs()[0].push('LocationPage', {LOCATION: this.LOCATION});
     // this.shopService.getShop(this.SHOP.SHOP_ID).then((res: any)=>{
     //   let _SHOP: iShop = res.SHOP;
     //   _SHOP.SHOP_IMAGES = this.proxyService.covertShortShopImages2Long(_SHOP.SHOP_ID);
