@@ -115,4 +115,14 @@ export class DbService {
         let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getLocationInfoDetail&LocationID='+ID;
         return this.httpClient.get(url).toPromise();
     }
+
+    locationOfUserGet(email: string){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getLocationInfoDetail&email='+email;
+        return this.httpClient.get(url).toPromise();
+    }
+
+    locationTempOfUserGet(email: string){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getLocationInfoDetail&email='+email;
+        return this.httpClient.get(url).toPromise();
+    }
 }

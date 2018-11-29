@@ -206,7 +206,7 @@ export class MapPage {
           text: 'Danh sách địa điểm cập nhật',
           handler: () => {
             console.log('Danh sách địa điểm cập nhật');
-            
+            this.navCtrl.push('LocationHistoryPage');
           }
         },
         {
