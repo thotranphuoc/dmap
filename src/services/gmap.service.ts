@@ -173,6 +173,7 @@ export class GmapService {
                     reject({ RESULT: 'Failed', ERROR: status });
                 }
             })
+            
         })
         // this.calculateAndDisplayRoute(directionsService, directionsDisplay, DEPARTURE, DESTINATION){
 
