@@ -13,7 +13,7 @@ import { AppService } from '../services/app.service';
 import { ImageService } from '../services/image.service';
 
 // import { HomePage } from '../pages/home/home';
-
+import { Geolocation } from '@ionic-native/geolocation';
 @NgModule({
   declarations: [
     MyApp,
@@ -38,7 +38,8 @@ import { ImageService } from '../services/image.service';
     LocalService,
     DbService,
     AppService,
-    ImageService
+    ImageService,
+    Geolocation
   ]
 })
 export class AppModule {}
