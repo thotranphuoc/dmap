@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, Platform } from 'ionic-angular';
 import { LoadingService } from '../../services/loading.service';
 import { iPosition } from '../../interfaces/position.interface';
 import { GmapService } from '../../services/gmap.service';
@@ -8,6 +8,8 @@ import { iLocation } from '../../interfaces/location.interface';
 import { LocalService } from '../../services/local.service';
 
 import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AppService } from '../../services/app.service';
 declare var google: any;
 @IonicPage()
 @Component({
@@ -24,6 +26,7 @@ export class MapPage {
   MAKERS_LOADED: boolean = false;
   LOCATIONS = [];
   constructor(
+    private platform: Platform,
     private geolocation: Geolocation,
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -32,9 +35,13 @@ export class MapPage {
     private loadingService: LoadingService,
     private gmapService: GmapService,
     private dbService: DbService,
-    private localService: LocalService
+    private localService: LocalService,
+    private appService: AppService
   ) {
-    this.getLocations();
+    platform.ready().then(()=>{
+      this.getGeolocation();
+    })
+    
   }
 
 
@@ -43,7 +50,7 @@ export class MapPage {
     console.log('ionViewDidLoad MapPage');
     // this.startInitMap();
     this.getLocations();
-    this.getGeolocation();
+    
   }
 
   getGeolocation(){
@@ -55,6 +62,10 @@ export class MapPage {
     })
     .catch((err)=>{
       console.log(err);
+      let POS: iPosition = { lat: 10.780482, lng: 106.70223 };
+      this.USER_LOCATION = POS;
+      this.startInitMap();
+      alert(err.message);
     })
   }
 
