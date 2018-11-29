@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { iLocation } from '../../interfaces/location.interface';
 import { DbService } from '../../services/db.service';
 import { LocalService } from '../../services/local.service';
 
@@ -19,6 +20,7 @@ export class LocationHistoryPage {
   pet = 'history';
   LOCATIONS_HIS = [];
   LOCATIONS_TEMP = [];
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -48,4 +50,29 @@ export class LocationHistoryPage {
       this.LOCATIONS_TEMP = res;
     })
   }
+
+
+  /*setLocations(){
+    console.log(this.LOCATION)
+    this.doSend2Admin(0);
+  }
+
+  doSend2Admin(active: any) {
+    console.log(this.LOCATION);
+    console.log(this.TYPES, this.localService.STRING);
+    if(this.localService.USER){
+      this.dbService.locationNewAdd(this.LOCATION.Latitude,this.LOCATION.Longitude,this.LOCATION.Title,this.LOCATION.Address,this.LOCATION.Phone, this.LOCATION.User_Phone, this.LOCATION.LocationType_Ref,this.TYPES,this.localService.STRING , active)
+      .then((res)=>{
+        console.log(res);
+        this.appService.presentToast('Thành công', 5000)
+        this.navCtrl.setRoot('MapPage');
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }else{
+      this.go2Login();
+    }
+
+  }*/
 }

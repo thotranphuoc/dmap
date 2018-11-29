@@ -61,11 +61,15 @@ export class MapPage {
       this.startInitMap();
     })
     .catch((err)=>{
+<<<<<<< HEAD
       console.log(err);
       let POS: iPosition = { lat: 10.780482, lng: 106.70223 };
       this.USER_LOCATION = POS;
       this.startInitMap();
       alert(err.message);
+=======
+      console.log(err + ' line 57');
+>>>>>>> a9ee5bc10d657f8a8b9012da1349d89ec617db7f
     })
   }
 
@@ -265,6 +269,8 @@ export class MapPage {
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
+            this.localService.USER=null;
+            this.navCtrl.push('LoginPage');
           }
         }
       ]
