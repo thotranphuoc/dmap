@@ -86,7 +86,7 @@ export class ProfileUpdatePage {
     // })
     // .catch((err) => console.log(err))
     // FOR THUMBNAIL
-    let pro1 = this.imageService.resizeImagesFromChoosenFilesReturnPromiseWithArrayOfImageDataUrlsSizeSetable(event, 150, 150)
+    let pro1 = this.imageService.resizeImagesFromChoosenFilesReturnPromiseWithArrayOfImageDataUrlsSizeSetable(event, 120, 120)
       .then((imgDataUrls: string[]) => {
         setTimeout(() => {
           console.log(imgDataUrls);

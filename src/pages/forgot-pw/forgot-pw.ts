@@ -42,14 +42,16 @@ export class ForgotPwPage {
         if(res.result == '1'){
           //this.appService.presentToast('Thành công. Xin vui lòng kiểm tra lại email',5000);
           this.localService.USER.Email=this.email;
-          alert('Thành công. Xin vui lòng kiểm tra lại email');
+          // alert('Thành công. Xin vui lòng kiểm tra lại email');
+          this.appService.showAlert('Thành công.',' Xin vui lòng kiểm tra lại email')
           this.navCtrl.push('PasswordChangePage');
           //this.navCtrl.setRoot('MapPage');
           //this.loadingService.hideLoading();
         }
         else
         {
-          alert('Khôi phục mật khẩu thất bại. Xin vui lòng kiểm tra lại');
+          this.appService.showAlert('Thất bại.',' Khôi phục mật khẩu thất bại. Xin vui lòng kiểm tra lại')
+          // alert('Khôi phục mật khẩu thất bại. Xin vui lòng kiểm tra lại');
         }
       })
       .catch((err)=>{

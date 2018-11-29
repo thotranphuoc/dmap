@@ -110,4 +110,9 @@ export class DbService {
         let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=GetImageInformation&email='+email;
         return this.httpClient.get(url).toPromise();
     }
+
+    locationValidationDetailGet(ID){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getLocationInfoDetail&LocationID='+ID;
+        return this.httpClient.get(url).toPromise();
+    }
 }

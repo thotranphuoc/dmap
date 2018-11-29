@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DbService } from '../../services/db.service';
 import { LocalService } from '../../services/local.service';
+import { AppService } from '../../services/app.service';
 
 /**
  * Generated class for the PasswordChangePage page.
@@ -21,7 +22,8 @@ export class PasswordChangePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private dbService: DbService,
-    private localService: LocalService
+    private localService: LocalService,
+    private appService: AppService
   ) {
   }
 
@@ -38,10 +40,12 @@ export class PasswordChangePage {
         .then((res: any) => {
           console.log(res);
           if(res.result == '1'){
-            alert('Thay đổi mật khẩu thành công');
+            // alert('Thay đổi mật khẩu thành công');
+            this.appService.showAlert('','Thay đổi mật khẩu thành công');
             this.navCtrl.setRoot('MapPage');
           }else{
-            alert('Lỗi, Xin vui lòng thử lại.');
+            // alert('Lỗi, Xin vui lòng thử lại.');
+            this.appService.showAlert('','Lỗi, Xin vui lòng thử lại.');
           }
         })
         .catch((err) => {
@@ -52,11 +56,13 @@ export class PasswordChangePage {
 
   checkIfValid(old, new1, new2) {
     if (old.length < 1 || new1.length < 1 || new1.length < 1) {
-      alert('Chưa nhập dữ liệu');
+      // alert('Chưa nhập dữ liệu');
+      this.appService.showAlert('','Chưa nhập dữ liệu');
       return false;
     }
     if (new1 !== new2) {
-      alert('Password Không khóp');
+      // alert('Password Không khóp');
+      this.appService.showAlert('','Password Không khóp');
       return false;
     }
     return true;

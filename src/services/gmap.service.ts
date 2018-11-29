@@ -154,7 +154,8 @@ export class GmapService {
                     let DISTANCE = this.calcDistance(directionsDisplay.getDirections());
                     resolve({ DISTANCE: DISTANCE, RESULT: 'OK' });
                 } else {
-                    alert('Yêu cầu chỉ đường không thành công ' + status);
+                    this.appService.showAlert('', 'Yêu cầu chỉ đường không thành công ' + status)
+                    // alert('Yêu cầu chỉ đường không thành công ' + status);
                     reject({ RESULT: 'Failed', ERROR: status });
                 }
             })

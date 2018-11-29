@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DbService } from '../../services/db.service';
 import { LocalService } from '../../services/local.service';
+import { AppService } from '../../services/app.service';
 
 /**
  * Generated class for the LoginPage page.
@@ -22,7 +23,8 @@ export class LoginPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private dbService: DbService,
-    private localService: LocalService
+    private localService: LocalService,
+    private appService: AppService
     ) {
       this.data = this.navParams.data;
       if(typeof(this.data) !=='undefined' && this.data.isBack){
@@ -50,7 +52,8 @@ export class LoginPage {
           this.navCtrl.setRoot('MapPage')
         }
       }else{
-        alert('Sai Tên đăng nhập hoặc mật khẩu, xin vui lòng thử lại.');
+        // alert('Sai Tên đăng nhập hoặc mật khẩu, xin vui lòng thử lại.');
+        this.appService.showAlert('','Sai Tên đăng nhập hoặc mật khẩu, xin vui lòng thử lại.')
       }
       
       

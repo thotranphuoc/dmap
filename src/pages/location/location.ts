@@ -18,6 +18,7 @@ export class LocationPage {
   data;
   ID: any;
   LOCATION: any = null;
+  VALIDATIONS = [false, false, false, false, false, false];
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -26,13 +27,19 @@ export class LocationPage {
       
       this.data = navParams.data;
       console.log(this.data);
-      this.ID = this.data.LOCATION.LocationID;
+      
+      if(typeof(this.data.LOCATION) =='undefined'){
+        this.navCtrl.setRoot('MapPage');
+      }else{
+        this.ID = this.data.LOCATION.LocationID;
+      }
       console.log(this.ID);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LocationPage');
     this.getLocation(this.ID);
+    this.getValidation(this.ID);
   }
 
   getLocation(ID: string){
@@ -54,4 +61,19 @@ export class LocationPage {
     this.navCtrl.push('MapRoutePage', {LOCATION: this.LOCATION});
   }
   
+
+  getValidation(ID){
+    this.dbService.locationValidationDetailGet(ID).then((res: any[])=>{
+      console.log(res);
+      let VALID = res;
+      VALID.forEach(V=>{
+        let index = Number(V.ACType_ID_Ref)-1;
+        this.VALIDATIONS[index]= true;
+      })
+      console.log(this.VALIDATIONS);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  } 
 }
