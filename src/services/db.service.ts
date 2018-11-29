@@ -117,12 +117,12 @@ export class DbService {
     }
 
     locationOfUserGet(email: string){
-        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getLocationInfoDetail&email='+email;
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getLocationUser&email='+email;
         return this.httpClient.get(url).toPromise();
     }
 
     locationTempOfUserGet(email: string){
-        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getLocationInfoDetail&email='+email;
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getLocationTempUser&email='+email;
         return this.httpClient.get(url).toPromise();
     }
 }
