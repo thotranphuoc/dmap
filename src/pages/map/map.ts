@@ -237,6 +237,8 @@ export class MapPage {
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
+            this.localService.USER=null;
+            this.navCtrl.push('LoginPage');
           }
         }
       ]

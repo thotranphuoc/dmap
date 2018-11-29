@@ -1,14 +1,14 @@
 page-location-history {
 
 }
-.segment-ios .segment-button.segment-activated {
+.segment-ios .segment-button.segment-activated{
     color: #000000;
     background-color: #f68b21;
     opacity: 1;
     -webkit-transition: 100ms all linear;
     transition: 100ms all linear;
 }
-.segment-ios .segment-button {
+.segment-ios .segment-button .history, .segment-ios .segment-button .temp{
 
     border-color: #488aff;
     color: #000000;
