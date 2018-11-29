@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { iLocation } from '../../interfaces/location.interface';
 import { DbService } from '../../services/db.service';
 import { LocalService } from '../../services/local.service';
+import { AppService } from '../../services/app.service';
 
 /**
  * Generated class for the LocationHistoryPage page.
@@ -20,12 +21,23 @@ export class LocationHistoryPage {
   pet = 'history';
   LOCATIONS_HIS = [];
   LOCATIONS_TEMP = [];
-  
+  LOCATION: iLOC = {
+    TempID: '',
+    Latitude: '',
+    Longitude: '',
+    Title: '',
+    Address: '',
+    Phone: '',
+    User_Phone: '',
+    LocationType_Ref: 0,
+    Star: '0'
+  }
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private dbService: DbService,
-    private localService: LocalService
+    private localService: LocalService,
+    private appService: AppService
     ) {
   }
 
@@ -51,21 +63,20 @@ export class LocationHistoryPage {
     })
   }
 
-
-  /*setLocations(){
-    console.log(this.LOCATION)
-    this.doSend2Admin(0);
+  setLocations(TempID: any){
+    console.log(TempID)
+    this.doSend2Admin(TempID);
   }
 
-  doSend2Admin(active: any) {
+  doSend2Admin(LocationID: any) {
     console.log(this.LOCATION);
-    console.log(this.TYPES, this.localService.STRING);
+  
     if(this.localService.USER){
-      this.dbService.locationNewAdd(this.LOCATION.Latitude,this.LOCATION.Longitude,this.LOCATION.Title,this.LOCATION.Address,this.LOCATION.Phone, this.LOCATION.User_Phone, this.LOCATION.LocationType_Ref,this.TYPES,this.localService.STRING , active)
+      this.dbService.locationNewAddActive(LocationID)
       .then((res)=>{
         console.log(res);
         this.appService.presentToast('Thành công', 5000)
-        this.navCtrl.setRoot('MapPage');
+        this.navCtrl.setRoot('LocationHistoryPage');
       })
       .catch(err => {
         console.log(err);
@@ -73,6 +84,20 @@ export class LocationHistoryPage {
     }else{
       this.go2Login();
     }
+  }
 
-  }*/
+  go2Login(){
+    this.navCtrl.push('LoginPage',{isBack: true});
+  }
+}
+export interface iLOC {
+  TempID: string,
+  Latitude: string,
+  Longitude: string,
+  Title: string,
+  Address: string,
+  Phone: string,
+  User_Phone: string,
+  LocationType_Ref: number, // Location ID
+  Star: string
 }
