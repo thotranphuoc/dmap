@@ -54,7 +54,7 @@ export class MapPage {
       this.startInitMap();
     })
     .catch((err)=>{
-      console.log(err);
+      console.log(err + ' line 57');
     })
   }
 

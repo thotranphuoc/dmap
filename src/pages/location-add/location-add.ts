@@ -100,17 +100,26 @@ export class LocationAddPage {
   send2Admin(){
     console.log(this.LOCATION)
     if( this.checkIfFullFill() ){
-      this.doSend2Admin();
+      this.doSend2Admin(1);
     }else{
-      this.appService.showAlert('Error', 'Please fill all required information');
+      this.appService.showAlert('Lỗi', 'Xin vui lòng điền đầy đủ thông tin');
     }
   }
 
-  doSend2Admin() {
+  save(){
+    console.log(this.LOCATION)
+    if( this.checkIfFullFill() ){
+      this.doSend2Admin(0);
+    }else{
+      this.appService.showAlert('Lỗi', 'Xin vui lòng điền đầy đủ thông tin');
+    }
+  }
+
+  doSend2Admin(active: any) {
     console.log(this.LOCATION);
     console.log(this.TYPES, this.localService.STRING);
     if(this.localService.USER){
-      this.dbService.locationNewAdd(this.LOCATION.Latitude,this.LOCATION.Longitude,this.LOCATION.Title,this.LOCATION.Address,this.LOCATION.Phone, this.LOCATION.User_Phone, this.LOCATION.LocationType_Ref,this.TYPES,this.localService.STRING )
+      this.dbService.locationNewAdd(this.LOCATION.Latitude,this.LOCATION.Longitude,this.LOCATION.Title,this.LOCATION.Address,this.LOCATION.Phone, this.LOCATION.User_Phone, this.LOCATION.LocationType_Ref,this.TYPES,this.localService.STRING , active)
       .then((res) => {
         console.log(res);
         return this.updateScoreAndLevel()
