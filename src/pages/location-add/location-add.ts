@@ -167,9 +167,10 @@ export class LocationAddPage {
   }
 
   checkIfFullFill(){
+    let i = 0;
     if(this.LOCATION.Address.trim().length<1) return false;
-    if(this.LOCATION.Latitude.trim().length<1) return false;
-    if(this.LOCATION.Longitude.trim().length<1) return false;
+    if(this.LOCATION.Latitude.toString().trim().length<1) return false;
+    if(this.LOCATION.Longitude.toString().trim().length<1) return false;
     if(this.LOCATION.Phone.trim().length<1) return false;
     if(this.LOCATION.Star.trim().length<1) return false;
     if(this.LOCATION.Title.trim().length<1) return false;
