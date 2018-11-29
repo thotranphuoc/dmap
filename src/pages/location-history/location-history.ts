@@ -63,9 +63,9 @@ export class LocationHistoryPage {
     })
   }
 
-  setLocations(TempID: any){
-    console.log(TempID)
-    this.doSend2Admin(TempID);
+  setLocations(LOCATION:iLOC){
+    console.log(LOCATION)
+    this.doSend2Admin(LOCATION.TempID);
   }
 
   doSend2Admin(LocationID: any) {
