@@ -26,28 +26,42 @@ export class GmapService {
     getCurrentLocation() {
         console.log('gmapSer.getcurrentLocation');
         console.log(navigator, navigator.geolocation);
+        alert(navigator.geolocation)
         return new Promise((resolve, reject) => {
             if (this.localService.USER_CURRENT_LOCATION) {
                 resolve(this.localService.USER_CURRENT_LOCATION)
             } else {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(position => {
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition((position)=>{
                         console.log('Curent location', position);
                         let pos = { lat: position.coords.latitude, lng: position.coords.longitude };
                         this.updateCurrentLocation(pos);
                         resolve(pos);
-                    }, err => {
+                    },(err)=>{
+                        alert(err.message);
                         console.log({ MSG: 'navigator.geolocation not available' })
                         let pos = { lat: 10.780482, lng: 106.70223 };
                         this.updateCurrentLocation(pos);
-                        this.appService.showToastWithCloseButton('Vui lòng bật định vị sau đó khởi động lại ứng dụng');
+                        this.appService.showToastWithCloseButton('Vui lòng bật định vị sau đó khởi động lại ứng dụng 2');
                         resolve(pos)
                     })
+                    // navigator.geolocation.getCurrentPosition(position => {
+                    //     console.log('Curent location', position);
+                    //     let pos = { lat: position.coords.latitude, lng: position.coords.longitude };
+                    //     this.updateCurrentLocation(pos);
+                    //     resolve(pos);
+                    // }, err => {
+                    //     console.log({ MSG: 'navigator.geolocation not available' })
+                    //     let pos = { lat: 10.780482, lng: 106.70223 };
+                    //     this.updateCurrentLocation(pos);
+                    //     this.appService.showToastWithCloseButton('Vui lòng bật định vị sau đó khởi động lại ứng dụng 2');
+                    //     resolve(pos)
+                    // })
                 } else {
                     console.log('navigator not allowed')
                     let pos = { lat: 10.780482, lng: 106.70223 };
                     this.updateCurrentLocation(pos);
-                    this.appService.showToastWithCloseButton('Vui lòng bật định vị sau đó khởi động lại ứng dụng')
+                    this.appService.showToastWithCloseButton('Vui lòng bật định vị sau đó khởi động lại ứng dụng 1')
                     resolve(pos)
                 }
             }

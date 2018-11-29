@@ -7,6 +7,7 @@ import { DbService } from '../../services/db.service';
 import { iLocation } from '../../interfaces/location.interface';
 import { LocalService } from '../../services/local.service';
 
+import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
 declare var google: any;
 @IonicPage()
 @Component({
@@ -23,6 +24,7 @@ export class MapPage {
   MAKERS_LOADED: boolean = false;
   LOCATIONS = [];
   constructor(
+    private geolocation: Geolocation,
     public navCtrl: NavController,
     public navParams: NavParams,
     private alertCtrl: AlertController,
@@ -35,10 +37,25 @@ export class MapPage {
     this.getLocations();
   }
 
+
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
-    this.startInitMap();
+    // this.startInitMap();
     this.getLocations();
+    this.getGeolocation();
+  }
+
+  getGeolocation(){
+    this.geolocation.getCurrentPosition().then((res)=>{
+      console.log(res);
+      let POS: iPosition = { lat: res.coords.latitude, lng: res.coords.longitude };
+      this.USER_LOCATION = POS;
+      this.startInitMap();
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
 
   startInitMap() {
