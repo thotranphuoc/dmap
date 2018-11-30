@@ -31,7 +31,7 @@ export class LocationAddPage {
     Title: '',
     Address: '',
     Phone: '',
-    User_Phone: '',
+    User_Phone: this.localService.USER.Phone,
     LocationType_Ref: 0,
     Star: '0'
   }
@@ -117,9 +117,10 @@ export class LocationAddPage {
 
   doSend2Admin(active: any) {
     console.log(this.LOCATION);
+    console.log('Star: ' + this.LOCATION.Star);
     console.log(this.TYPES, this.localService.STRING);
     if(this.localService.USER){
-      this.dbService.locationNewAdd(this.LOCATION.Latitude,this.LOCATION.Longitude,this.LOCATION.Title,this.LOCATION.Address,this.LOCATION.Phone, this.LOCATION.User_Phone, this.LOCATION.LocationType_Ref,this.TYPES,this.localService.STRING , active)
+      this.dbService.locationNewAdd(this.LOCATION.Latitude,this.LOCATION.Longitude,this.LOCATION.Title,this.LOCATION.Address,this.LOCATION.Phone, this.LOCATION.User_Phone, this.LOCATION.LocationType_Ref,this.TYPES, this.LOCATION.Star, this.localService.STRING , active)
       .then((res) => {
         console.log(res);
         return this.updateScoreAndLevel()

@@ -45,9 +45,9 @@ export class DbService {
         return this.httpClient.get(url).toPromise();
     }
 
-    locationNewAdd(Latitude,Longitude,Title,Address,Phone,User_Phone,LocationType_Ref,Qtype,QA,Active){
-       // http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude=10&Longitude=100&Title=Title&Address=Address&Phone=Phone&User_Phone=User_Phone&LocationType_Ref=1&QuestionType=1;2;3&QuestionAnswer=1-co;2-khong;3-co
-        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude='+Latitude+'&Longitude='+Longitude+'&Title='+Title+'&Address='+Address+'&Phone='+Phone+'&User_Phone='+User_Phone+'&LocationType_Ref='+LocationType_Ref+'&QuestionType='+Qtype+'&QuestionAnswer='+QA+'&Active='+Active;
+    locationNewAdd(Latitude,Longitude,Title,Address,Phone,User_Phone,LocationType_Ref,Qtype,QStar,QA,Active){
+       // http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude=10&Longitude=100&Title=Title&Address=Address&Phone=Phone&User_Phone=User_Phone&LocationType_Ref=1&Star=3&QuestionType=1;2;3&QuestionAnswer=1-co;2-khong;3-co
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude='+Latitude+'&Longitude='+Longitude+'&Title='+Title+'&Address='+Address+'&Phone='+Phone+'&User_Phone='+User_Phone+'&LocationType_Ref='+LocationType_Ref+'&QuestionType='+Qtype+'&Star='+QStar+'&QuestionAnswer='+QA+'&Active='+Active;
         console.log(url);
         return this.httpClient.get(url).toPromise();
     }
