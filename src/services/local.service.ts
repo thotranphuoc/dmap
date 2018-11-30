@@ -13,7 +13,7 @@ import { NavController } from 'ionic-angular/navigation/nav-controller';
 export class LocalService {
     loading: any;
     count: number = 0;
-
+    LOCATIONTYPES = [];
     isLoading: boolean = false;
     constructor(
         private loadingCtrl: LoadingController,

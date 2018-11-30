@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoadingController, Loading } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable()
 
@@ -128,6 +129,16 @@ export class DbService {
 
     locationTempOfUserGet(email: string){
         let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getLocationTempUser&email='+email;
+        return this.httpClient.get(url).toPromise();
+    }
+
+    locationTypeSettingsGet(email){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=getAllUserLoctionType&email='+email;
+        return this.httpClient.get(url).toPromise();
+    }
+
+    locationTypeSetUpdate(email, phone, stringSet){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=setAllUserLoctionType&email='+email+'&phone='+phone+'&LocationType='+stringSet ;
         return this.httpClient.get(url).toPromise();
     }
 }
