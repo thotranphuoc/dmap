@@ -27,6 +27,17 @@ export class MapPage {
   LOCATIONS = [];
   FILTER_LOCATIONS = [];
   LOCATIONTYPESSET = [];
+
+  CITIES = [
+    { type: 'radio', label: 'Hồ Chí Minh', value: '1', lat:10.780482, lng: 106.70223 , checked: false },
+    { type: 'radio', label: 'Hà Nội', value: '2', lat:21.022736, lng: 105.8019441 , checked: false },
+    { type: 'radio', label: 'Hải Phòng', value: '3', lat:20.8467333, lng: 106.6637271 , checked: false },
+    { type: 'radio', label: 'Huế', value: '4', lat:16.4533875, lng: 107.5420936 , checked: false },
+    { type: 'radio', label: 'Đà Nẵng', value: '5', lat:16.0471659, lng: 108.1716865 , checked: false },
+    { type: 'radio', label: 'Cần Thơ', value: '6', lat:10.0341851, lng: 105.7225508 , checked: false },
+    { type: 'radio', label: 'Bình Định', value: '7', lat:14.1026697, lng: 108.4191822 , checked: false },
+    { type: 'radio', label: 'Tây Ninh', value: '8', lat:11.3658548, lng: 106.059613 , checked: false },
+  ]
   constructor(
     private platform: Platform,
     private geolocation: Geolocation,
@@ -41,7 +52,7 @@ export class MapPage {
     private appService: AppService
   ) {
     platform.ready().then(() => {
-      this.getGeolocation();
+      // this.getGeolocation();
     })
 
   }
@@ -53,6 +64,7 @@ export class MapPage {
     // this.startInitMap();
     this.getLocations();
     this.getLocationTypeSettings();
+    this.locationHandle();
   }
 
   getGeolocation() {
@@ -134,9 +146,9 @@ export class MapPage {
           console.log(res);
           this.LOCATIONS = res;
           this.localService.LOCATIONS = this.LOCATIONS;
-          if(this.LOCATIONTYPESSET.length>0){
+          if (this.LOCATIONTYPESSET.length > 0) {
             this.FILTER_LOCATIONS = this.LOCATIONS.filter(LOC => this.LOCATIONTYPESSET.map(L => L.TypeLocation).indexOf(LOC.LocationTypeID) >= 0);
-          }else{
+          } else {
             this.FILTER_LOCATIONS = this.LOCATIONS;
           }
           console.log(this.FILTER_LOCATIONS);
@@ -303,6 +315,58 @@ export class MapPage {
 
     actionSheet.present();
   }
+
+  locationHandle(){
+    if(this.localService.USER && this.localService.USER.lat !=='0' && this.localService.USER.lng !=='0'){
+      this.USER_LOCATION = { lat: Number(this.localService.USER.lat), lng: Number(this.localService.USER.lng) };
+      this.startInitMap();
+      this.localService.USER_CURRENT_LOCATION = this.USER_LOCATION;
+    }else{
+      this.showRadio();
+    }
+  }
+  showRadio() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Chọn tỉnh thành:');
+    this.CITIES.forEach(CITY=>{
+      alert.addInput({ type: CITY.type, label: CITY.label, value: CITY.value, checked: CITY.checked })
+    })
+    // alert.addInput({ type: 'radio', label: 'Hồ Chí Minh', value: '1', checked: true });
+    // alert.addInput({ type: 'radio', label: 'Hà Nội', value: '2', checked: false });
+    // alert.addInput({ type: 'radio', label: 'Hải Phòng', value: '3', checked: false });
+    // alert.addInput({ type: 'radio', label: 'Huế', value: '4', checked: false });
+    // alert.addInput({ type: 'radio', label: 'Đà Nẵng', value: '5', checked: false });
+    // alert.addInput({ type: 'radio', label: 'Cần Thơ', value: '6', checked: false });
+    // alert.addInput({ type: 'radio', label: 'Bình Định', value: '7', checked: false });
+    // alert.addInput({ type: 'radio', label: 'Tây Ninh', value: '8', checked: false });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        console.log(data);
+        this.updateLocation(data);
+      }
+    });
+    alert.present();
+  }
+
+  updateLocation(ID) {
+    let index = this.CITIES.map(CITY=> CITY.value).indexOf(ID)
+    this.USER_LOCATION = {lat: this.CITIES[index].lat, lng: this.CITIES[index].lng};
+    this.localService.USER_CURRENT_LOCATION = this.USER_LOCATION;
+    this.startInitMap();
+    if(this.localService.USER){
+      this.dbService.locationUserSet(this.localService.USER.Email, this.USER_LOCATION.lat, this.USER_LOCATION.lng)
+      .then((res)=>{
+        console.log(res);
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+    }
+  }
+
 }
 
 

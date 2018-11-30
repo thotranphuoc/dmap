@@ -26,7 +26,7 @@ export class GmapService {
     getCurrentLocation() {
         console.log('gmapSer.getcurrentLocation');
         console.log(navigator, navigator.geolocation);
-        alert(navigator.geolocation)
+        // alert(navigator.geolocation)
         return new Promise((resolve, reject) => {
             if (this.localService.USER_CURRENT_LOCATION) {
                 resolve(this.localService.USER_CURRENT_LOCATION)
@@ -67,6 +67,8 @@ export class GmapService {
             }
         })
     }
+
+    
 
     updateCurrentLocation(position) {
         this.currentUserPosition = position;

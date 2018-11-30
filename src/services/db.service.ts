@@ -147,4 +147,11 @@ export class DbService {
         let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=setAllUserLoctionType&email='+email+'&phone='+phone+'&LocationType='+stringSet ;
         return this.httpClient.get(url).toPromise();
     }
+
+    locationUserSet(email, lat, lng){
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=SetLocationUser&email='+email+'&lat='+lat+'&lng='+lng;
+        return this.httpClient.get(url).toPromise();
+    }
+
+    
 }

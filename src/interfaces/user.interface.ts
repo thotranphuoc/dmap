@@ -1,3 +1,5 @@
+import { LAZY_LOADED_TOKEN } from "ionic-angular/util/module-loader";
+
 export interface iUser {
     Address: string,
     Email: string,
@@ -9,4 +11,7 @@ export interface iUser {
     Password: string,
     Phone: string,
     Score: string,
+    lat: string,
+    lng: string
+    
 }
