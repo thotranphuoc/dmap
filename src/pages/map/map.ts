@@ -25,6 +25,8 @@ export class MapPage {
   MAP_ZOOM: number = 10;
   MAKERS_LOADED: boolean = false;
   LOCATIONS = [];
+  FILTER_LOCATIONS = [];
+  LOCATIONTYPESSET = [];
   constructor(
     private platform: Platform,
     private geolocation: Geolocation,
@@ -50,7 +52,7 @@ export class MapPage {
     console.log('ionViewDidLoad MapPage');
     // this.startInitMap();
     this.getLocations();
-    
+    this.getLocationTypeSettings();
   }
 
   getGeolocation(){
@@ -115,10 +117,10 @@ export class MapPage {
           console.log('map was loaded fully');
           this.loadingService.hideLoading();
           if (this.LOCATIONS.length > 0) {
-            this.loadLocation2Map(this.LOCATIONS);
+            this.loadLocation2Map(this.FILTER_LOCATIONS);
           } else {
             this.getLocations().then(() => {
-              this.loadLocation2Map(this.LOCATIONS);
+              this.loadLocation2Map(this.FILTER_LOCATIONS);
             })
           }
         })
@@ -132,6 +134,8 @@ export class MapPage {
           console.log(res);
           this.LOCATIONS = res;
           this.localService.LOCATIONS = this.LOCATIONS;
+          this.FILTER_LOCATIONS = this.LOCATIONS.filter(LOC => this.LOCATIONTYPESSET.map(L => L.TypeLocation).indexOf(LOC.LocationTypeID)>=0);
+          console.log(this.FILTER_LOCATIONS);
           resolve();
         })
         .catch(err => {
@@ -139,6 +143,24 @@ export class MapPage {
           reject(err);
         })
     })
+  }
+
+  getLocationTypeSettings(){
+    this.LOCATIONTYPESSET =[];
+    let email ='luan@gmail.com';
+    if(this.localService.USER){
+      email = this.localService.USER.Email
+    }
+    this.dbService.locationTypeSettingsGet(email)
+    .then((res: any)=>{
+      console.log(res);
+      this.LOCATIONTYPESSET = res;
+      // this.getLocationTypes();
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
   }
 
   loadLocation2Map(LOCATIONS: iLocation[]) {
