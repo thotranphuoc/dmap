@@ -57,6 +57,12 @@ export class DbService {
         console.log(url);
         return this.httpClient.get(url).toPromise();
     }
+    locationNewAddAllActive(User_Phone)
+    {
+        let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=UpdateAllLocation&phone='+User_Phone;
+        console.log(url);
+        return this.httpClient.get(url).toPromise();
+    }
     userLogin(user: string, pw: string){
         let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=login&email='+user+'&password='+pw;
         return this.httpClient.get(url).toPromise();

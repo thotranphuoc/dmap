@@ -86,6 +86,29 @@ export class LocationHistoryPage {
     }
   }
 
+  setAllLocations(){
+    console.log();
+    this.doSendAll2Admin(this.localService.USER.Phone);
+  }
+
+  doSendAll2Admin(Phone: any) {
+    console.log(this.LOCATION);
+  
+    if(this.localService.USER){
+      this.dbService.locationNewAddAllActive(Phone)
+      .then((res)=>{
+        console.log(res);
+        this.appService.presentToast('Thành công', 5000)
+        this.navCtrl.setRoot('LocationHistoryPage');
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }else{
+      this.go2Login();
+    }
+  }
+
   go2Login(){
     this.navCtrl.push('LoginPage',{isBack: true});
   }
