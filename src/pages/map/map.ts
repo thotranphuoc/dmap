@@ -40,10 +40,10 @@ export class MapPage {
     private localService: LocalService,
     private appService: AppService
   ) {
-    platform.ready().then(()=>{
+    platform.ready().then(() => {
       this.getGeolocation();
     })
-    
+
   }
 
 
@@ -55,20 +55,20 @@ export class MapPage {
     this.getLocationTypeSettings();
   }
 
-  getGeolocation(){
-    this.geolocation.getCurrentPosition().then((res)=>{
+  getGeolocation() {
+    this.geolocation.getCurrentPosition().then((res) => {
       console.log(res);
       let POS: iPosition = { lat: res.coords.latitude, lng: res.coords.longitude };
       this.USER_LOCATION = POS;
       this.startInitMap();
     })
-    .catch((err)=>{
-      console.log(err);
-      let POS: iPosition = { lat: 10.780482, lng: 106.70223 };
-      this.USER_LOCATION = POS;
-      this.startInitMap();
-      alert(err.message);
-    })
+      .catch((err) => {
+        console.log(err);
+        let POS: iPosition = { lat: 10.780482, lng: 106.70223 };
+        this.USER_LOCATION = POS;
+        this.startInitMap();
+        alert(err.message);
+      })
   }
 
   startInitMap() {
@@ -134,7 +134,11 @@ export class MapPage {
           console.log(res);
           this.LOCATIONS = res;
           this.localService.LOCATIONS = this.LOCATIONS;
-          this.FILTER_LOCATIONS = this.LOCATIONS.filter(LOC => this.LOCATIONTYPESSET.map(L => L.TypeLocation).indexOf(LOC.LocationTypeID)>=0);
+          if(this.LOCATIONTYPESSET.length>0){
+            this.FILTER_LOCATIONS = this.LOCATIONS.filter(LOC => this.LOCATIONTYPESSET.map(L => L.TypeLocation).indexOf(LOC.LocationTypeID) >= 0);
+          }else{
+            this.FILTER_LOCATIONS = this.LOCATIONS;
+          }
           console.log(this.FILTER_LOCATIONS);
           resolve();
         })
@@ -145,21 +149,23 @@ export class MapPage {
     })
   }
 
-  getLocationTypeSettings(){
-    this.LOCATIONTYPESSET =[];
-    let email ='luan@gmail.com';
-    if(this.localService.USER){
+  getLocationTypeSettings() {
+    this.LOCATIONTYPESSET = [];
+    let email = null;
+    if (this.localService.USER) {
       email = this.localService.USER.Email
     }
-    this.dbService.locationTypeSettingsGet(email)
-    .then((res: any)=>{
-      console.log(res);
-      this.LOCATIONTYPESSET = res;
-      // this.getLocationTypes();
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    if (this.localService.USER) {
+      this.dbService.locationTypeSettingsGet(this.localService.USER.Email)
+        .then((res: any) => {
+          console.log(res);
+          this.LOCATIONTYPESSET = res;
+          // this.getLocationTypes();
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
 
   }
 
@@ -211,7 +217,7 @@ export class MapPage {
           text: 'Chấp nhận',
           handler: () => {
             console.log('Agree clicked');
-            this.navCtrl.push('LoginPage',{isBack: true});
+            this.navCtrl.push('LoginPage', { isBack: true });
           }
         }
       ]
@@ -267,7 +273,7 @@ export class MapPage {
             this.navCtrl.push('LocationSettingPage');
           }
         },
-        
+
         {
           text: 'Giới thiệu',
           handler: () => {
@@ -275,7 +281,7 @@ export class MapPage {
             this.navCtrl.push('InformationPage');
           }
         },
-        
+
         {
           text: 'Giúp đỡ',
           handler: () => {
@@ -288,7 +294,7 @@ export class MapPage {
           role: 'cancel',
           handler: () => {
             console.log('Cancel clicked');
-            this.localService.USER=null;
+            this.localService.USER = null;
             this.navCtrl.push('LoginPage');
           }
         }
