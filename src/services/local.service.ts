@@ -40,6 +40,8 @@ export class LocalService {
         Password: '',
         Phone: '',
         Score: '',
+        lat: '0',
+        lng: '0'
     }
     STRING = '';
     USER_CURRENT_LOCATION: iPosition = null;
