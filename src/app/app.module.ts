@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicStorageModule} from '@ionic/storage';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -22,7 +23,8 @@ import { Geolocation } from '@ionic-native/geolocation';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,7 +41,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     DbService,
     AppService,
     ImageService,
-    Geolocation
+    Geolocation,
+    IonicStorageModule
   ]
 })
 export class AppModule {}
