@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {IonicStorageModule} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 import { DbService } from '../../services/db.service';
 import { LocalService } from '../../services/local.service';
 import { AppService } from '../../services/app.service';
@@ -20,14 +20,15 @@ import { AppService } from '../../services/app.service';
 export class LoginPage {
   data: any;
   isBack: boolean  = false;
+  user_name: any='';
+  password: any='';
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private dbService: DbService,
     private localService: LocalService,
     private appService: AppService,
-    private storages: IonicStorageModule,
-
+    private storage: Storage,
 
     ) {
       this.data = this.navParams.data;
@@ -40,6 +41,25 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+//kiem tra neu co gtri user name pass 
+ 
+
+    try{
+        this.storage.get('Username').then((val) => {
+        console.log('User name:', val);
+        this.user_name =val;
+      });
+  
+       this.storage.get('Password').then((val) => {
+        console.log('Password:', val);
+        this.password = val;
+      });
+    }
+    catch{
+      this.user_name ="";
+      this.password ="";
+    }
+    
   }
 
   login(user,pass){
@@ -50,10 +70,18 @@ export class LoginPage {
       console.log(res);
       if(res.result=='1'){
         this.localService.USER = res;
-        this.storage.setItem("Username",user);
-        this.storage.setItem("Password",pass);
+        this.storage.set("Username",user);
+        this.storage.set("Password",pass);
 
-        console.log("User name: " + this.storage.getItem("Username") + " - pass: " + this.storage.getItem("Password"));
+        let user_name = this.storage.get('Username').then((val) => {
+          console.log('User name:', val);
+        });
+
+        let password = this.storage.get('Password').then((val) => {
+          console.log('Password:', val);
+        });
+
+        //console.log("User name: " + this.storage.get("Username") + " - pass: " + this.storage.get("Password"));
         if (this.isBack){
           this.navCtrl.pop()
         }else{
