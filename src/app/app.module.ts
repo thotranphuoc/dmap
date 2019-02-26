@@ -13,28 +13,44 @@ import { DbService } from '../services/db.service';
 import { AppService } from '../services/app.service';
 import { ImageService } from '../services/image.service';
 import { IonicStorageModule } from '@ionic/storage';
+import {AgmCoreModule} from '@agm/core';
 
 // import { HomePage } from '../pages/home/home';
 import { Geolocation } from '@ionic-native/geolocation';
+import { MapAutocompletePage } from '../pages/map-autocomplete/map-autocomplete';
+import {PrettyJsonModule} from 'angular2-prettyjson';
+import { MapAutocompletePageModule } from '../pages/map-autocomplete/map-autocomplete.module';
+import { Keyboard } from '@ionic-native/keyboard';
 @NgModule({
   declarations: [
     MyApp,
+    //MapAutocompletePage
     // HomePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+
+
+    AgmCoreModule.forRoot({
+      apiKey   : 'AIzaSyCjBaIhoK9XX4eOfeSsPb91bq14DO_gJUc',
+      libraries: ['places']
+    }),
+    PrettyJsonModule,
+    MapAutocompletePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    //MapAutocompletePage
     // HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    //Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoadingService,
     GmapService,

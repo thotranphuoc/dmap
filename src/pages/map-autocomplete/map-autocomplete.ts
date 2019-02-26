@@ -1,5 +1,6 @@
+import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { Component, NgZone, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, Platform, } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, Platform } from 'ionic-angular';
 import { LoadingService } from '../../services/loading.service';
 import { iPosition } from '../../interfaces/position.interface';
 import { GmapService } from '../../services/gmap.service';
@@ -11,17 +12,22 @@ import { Geolocation, GeolocationOptions } from '@ionic-native/geolocation';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { AppService } from '../../services/app.service';
 import { GoogleMap } from '@agm/core/services/google-maps-types';
-import { ViewController } from 'ionic-angular/navigation/view-controller';
-import {Keyboard} from '@ionic-native/keyboard';
+import { Keyboard } from '@ionic-native/keyboard';
 declare var google: any;
+/**
+ * Generated class for the MapAutocompletePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 @IonicPage()
 @Component({
-  selector: 'page-map',
-  templateUrl: 'map.html',
+  selector: 'page-map-autocomplete',
+  templateUrl: 'map-autocomplete.html',
 })
-export class MapPage {
+export class MapAutocompletePage {
   @ViewChild('searchbar') searchBar;
-
   autocompleteItems: any;
   autocomplete: any = {
     query: ''
@@ -50,11 +56,14 @@ export class MapPage {
     { type: 'radio', label: 'Bình Định', value: '7', lat:14.1026697, lng: 108.4191822 , checked: false },
     { type: 'radio', label: 'Tây Ninh', value: '8', lat:11.3658548, lng: 106.059613 , checked: false },
   ]
+
   constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    
     private platform: Platform,
     private geolocation: Geolocation,
-    public navCtrl: NavController,
-    public navParams: NavParams,
     private alertCtrl: AlertController,
     private actionSheetCtrl: ActionSheetController,
     private loadingService: LoadingService,
@@ -62,14 +71,8 @@ export class MapPage {
     private dbService: DbService,
     private localService: LocalService,
     private appService: AppService,
-    public viewCtrl: ViewController,
-    //private keyboard: Keyboard,
-  
-  ) {
-    platform.ready().then(() => {
-      // this.getGeolocation();
-    })
-
+    //private keyboard: Keyboard
+    ) {
   }
 
   ionViewDidLoad() {
@@ -82,7 +85,7 @@ export class MapPage {
     setTimeout(() => {
       this.searchBar.setFocus();
       Keyboard.show();
-    }, 600)
+    }, 600);
     
   }
 
@@ -417,25 +420,6 @@ export class MapPage {
     }
   }
 
-  search(e){
-    console.log(e);
-    let str = e.toLowerCase();
-    console.log(str);
-    console.log(this.FILTER_LOCATIONS);
-    if(str.length>0){
-      this.FILTER_LOCATIONS = this.LOCATIONS.filter(LOC => LOC.Address.toLowerCase().indexOf(str)>-1)
-    }else{
-      console.log('str = 0');
-      this.FILTER_LOCATIONS = this.LOCATIONS_; 
-    }
-
-    console.log(this.FILTER_LOCATIONS.length);
-    //this.loadLocation2Map(this.FILTER_LOCATIONS) 
-
-    //this.showMap(this.USER_LOCATION, mapElement);
-  }
-
-
   ngOnInit() {
     setTimeout(() => {
       this.acService = new google.maps.places.AutocompleteService();
@@ -476,8 +460,4 @@ export class MapPage {
     });
   }
 
-
 }
-
-
-
