@@ -13,6 +13,7 @@ import { AppService } from '../../services/app.service';
 import { GoogleMap } from '@agm/core/services/google-maps-types';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import {Keyboard} from '@ionic-native/keyboard';
+
 declare var google: any;
 @IonicPage()
 @Component({
@@ -78,12 +79,6 @@ export class MapPage {
     this.getLocations();
     this.getLocationTypeSettings();
     this.locationHandle();
-
-    setTimeout(() => {
-      this.searchBar.setFocus();
-      Keyboard.show();
-    }, 600)
-    
   }
 
   searchAddress()
@@ -134,8 +129,10 @@ export class MapPage {
     this.loadingService.startLoading();
     setTimeout(() => {
       this.mapEl = document.getElementById('map');
+
       this.initMap(this.mapEl)
     }, 1000)
+
   }
 
   initMap(mapElement) {
@@ -152,6 +149,9 @@ export class MapPage {
           console.log(err);
         })
     }
+
+    
+
   }
 
   showMap(position: iPosition, mapElement) {
@@ -437,13 +437,7 @@ export class MapPage {
 
 
   ngOnInit() {
-    setTimeout(() => {
-      this.acService = new google.maps.places.AutocompleteService();
-    this.autocompleteItems = [];
-    this.autocomplete = {
-      query: ''
-    };
-    }, 2000);
+    
   }
   dismiss() {
     this.viewCtrl.dismiss();
@@ -475,6 +469,8 @@ export class MapPage {
       }
     });
   }
+
+
 
 
 }

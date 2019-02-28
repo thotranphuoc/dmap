@@ -20,20 +20,23 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { MapAutocompletePage } from '../pages/map-autocomplete/map-autocomplete';
 import {PrettyJsonModule} from 'angular2-prettyjson';
 import { MapAutocompletePageModule } from '../pages/map-autocomplete/map-autocomplete.module';
-import { Keyboard } from '@ionic-native/keyboard';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { MapPage } from '../pages/map/map';
+import { AutoCompleteModalPage } from '../pages/auto-complete-modal/auto-complete-modal';
+//import {Keyboard} from '@ionic-native/keyboard';
 @NgModule({
   declarations: [
     MyApp,
     //MapAutocompletePage
     // HomePage
+    //MapPage
+    AutoCompleteModalPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     IonicStorageModule.forRoot(),
-
-
     AgmCoreModule.forRoot({
       apiKey   : 'AIzaSyCjBaIhoK9XX4eOfeSsPb91bq14DO_gJUc',
       libraries: ['places']
@@ -44,13 +47,15 @@ import { Keyboard } from '@ionic-native/keyboard';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    AutoCompleteModalPage
     //MapAutocompletePage
     // HomePage
+    //MapPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    //Keyboard,
+    Keyboard,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoadingService,
     GmapService,
