@@ -14,4 +14,5 @@ export interface iLocation {
     Title: string,
     Url_Image: string,
     User_Phone: string,
+    //Star: string,
 }

@@ -26,7 +26,7 @@ export class AutoCompleteModalPage {
   longitude: number = 0;
   geo: any
 
-  service = new google.maps.places.AutocompleteService();
+  service: any; // new google.maps.places.AutocompleteService();
 
   constructor (public viewCtrl: ViewController, private zone: NgZone) {
     this.autocompleteItems = [];
@@ -35,6 +35,12 @@ export class AutoCompleteModalPage {
     };
   }
 
+  ionViewDidLoad() {
+    setTimeout(() => {
+      this.service = new google;
+      console.log(this.service);
+    }, 1000);
+  }
   dismiss() {
     this.viewCtrl.dismiss();
   }
@@ -56,7 +62,7 @@ export class AutoCompleteModalPage {
     this.service.getPlacePredictions({
     input: this.autocomplete.query,
     componentRestrictions: {
-      country: 'vn'
+      country: 'VN'
     }
    }, (predictions, status) => {
      me.autocompleteItems = [];

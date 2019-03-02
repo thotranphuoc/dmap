@@ -57,6 +57,10 @@ export class LocationPage {
     this.navCtrl.push('CommentAddPage', {LocationID: this.ID});
   }
 
+  go2RequestEdit(){
+    this.navCtrl.push('RequestEditPage', {LOCATION: this.data.LOCATION});
+  }
+
   go2MapRoute(){
     this.navCtrl.push('MapRoutePage', {LOCATION: this.LOCATION});
   }
