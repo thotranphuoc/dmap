@@ -3,6 +3,11 @@ import { LoadingController, Loading } from 'ionic-angular';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { stringify } from '@angular/compiler/src/util';
+//import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/storage';
+
 
 @Injectable()
 
@@ -51,6 +56,14 @@ export class DbService {
         console.log(url);
         return this.httpClient.get(url).toPromise();
     }
+
+    locationNewAddRequest(Latitude,Longitude,Title,Address,Phone,User_Phone,LocationType_Ref,Qtype,QStar,QA,Active){
+        // http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude=10&Longitude=100&Title=Title&Address=Address&Phone=Phone&User_Phone=User_Phone&LocationType_Ref=1&Star=3&QuestionType=1;2;3&QuestionAnswer=1-co;2-khong;3-co
+         let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=insertLocation&Latitude='+Latitude+'&Longitude='+Longitude+'&Title='+Title+'&Address='+Address+'&Phone='+Phone+'&User_Phone='+User_Phone+'&LocationType_Ref='+LocationType_Ref+'&QuestionType='+Qtype+'&Star='+QStar+'&QuestionAnswer='+QA+'&Active='+Active+'&Res=1';
+         console.log(url);
+         return this.httpClient.get(url).toPromise();
+     }
+
     locationNewAddActive(LocationID)
     {
         let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=UpdateLocation&LocationID='+LocationID;
@@ -152,6 +165,4 @@ export class DbService {
         let url = 'http://www.drdvietnam.org/bandotiepcan/service?action=SetLocationUser&email='+email+'&lat='+lat+'&lng='+lng;
         return this.httpClient.get(url).toPromise();
     }
-
-    
 }

@@ -107,7 +107,8 @@ export class LoginPage {
   }
 
   go2ForgotPass(){
-    this.navCtrl.push('ForgotPwPage');
+    //this.navCtrl.push('ForgotPwPage');
+    this.navCtrl.push('UploadImgPage');
   }
 
 }

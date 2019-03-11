@@ -125,7 +125,28 @@ export class RequestEditPage {
       this.appService.showAlert('Lỗi', 'Xin vui lòng điền đầy đủ thông tin');
     }
   }
-
+  send2AdminRequest(active: any){
+    console.log(this.LOCATION);
+    console.log('Star: ' + this.LOCATION.Star);
+    console.log(this.TYPES, this.localService.STRING);
+    if(this.localService.USER){
+      this.dbService.locationNewAddRequest(this.LOCATION.Latitude,this.LOCATION.Longitude,this.LOCATION.Title,this.LOCATION.Address,this.LOCATION.Phone, this.LOCATION.User_Phone, this.LOCATION.LocationType_Ref,this.TYPES, this.LOCATION.Star, this.localService.STRING , active)
+      .then((res) => {
+        console.log(res);
+        return this.updateScoreAndLevel()
+      })
+      .then((res)=>{
+        console.log(res);
+        this.appService.presentToast('Thành công', 5000)
+        this.navCtrl.setRoot('MapPage');
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }else{
+      this.go2Login();
+    }
+  }
   doSend2Admin(active: any) {
     console.log(this.LOCATION);
     console.log('Star: ' + this.LOCATION.Star);

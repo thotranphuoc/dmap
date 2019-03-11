@@ -23,7 +23,15 @@ import { MapAutocompletePageModule } from '../pages/map-autocomplete/map-autocom
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { MapPage } from '../pages/map/map';
 import { AutoCompleteModalPage } from '../pages/auto-complete-modal/auto-complete-modal';
+import { Camera } from '@ionic-native/camera';
+import { FileTransfer } from '@ionic-native/file-transfer';
 //import {Keyboard} from '@ionic-native/keyboard';
+// firebase setup
+import * as firebase from '@ionic-native/firebase';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/storage'
+
 @NgModule({
   declarations: [
     MyApp,
@@ -64,6 +72,9 @@ import { AutoCompleteModalPage } from '../pages/auto-complete-modal/auto-complet
     AppService,
     ImageService,
     Geolocation,
+    Camera,
+    FileTransfer
+
     //Storage
   ]
 })
